@@ -4,10 +4,11 @@ const mongoose = require("mongoose");
 const path = require("path");
 const bodyParser = require("body-parser");
 
+const allpizza =require("./controllers/recipeController");
+
 const x = require("./routes/pizzaRoutes");
 
-mongoose
-  .connect(
+mongoose.connect(
     `mongodb://localhost:27017/pizzadb`,
     { useNewUrlParser: true }
   )
@@ -28,6 +29,16 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.listen(3000, () => {
-  console.log("server is running on port 3000");
+app.get('/list',function(req,res){
+
+
+
+ res.send(allpizza);
+
+
+});
+
+
+app.listen(3001, () => {
+  console.log("server is running on port 3001");
 });

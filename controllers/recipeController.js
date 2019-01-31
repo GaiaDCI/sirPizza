@@ -9,7 +9,8 @@ allPizzas.list = (req, res) => {
     if (error) {
       console.log("You have an error:", error);
     } else {
-      res.render("../views/index", { lepizze: lepizze });
+      console.log(lepizze);
+      res.render("../views/index", { "frontendValue": lepizze });
     }
   });
 };

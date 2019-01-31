@@ -7,8 +7,14 @@
 
 <body>
   pizzza Page
-  dwdwdwdw
+
   <h1>Hey I am an H1</h1>
-</body>
+  <% for (var i=0; i<frontendValue.length; i++) { %>
+    <%= JSON.stringify(frontendValue[i].name) %>
+    <%= frontendValue[i].expense %>
+    <%= frontendValue[i].ingredients %>
+    <%= frontendValue[i].difficulties %>
+<% } %>
+</body>;
 
 </html>

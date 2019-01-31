@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const pizzaSchema = new mongoose.Schema({
-  name: { type: String, required: "name", unique: true },
+  name: String,
   expense: Number, //total amount of the pizza
   ingredients: String, //or single ingredient like tomato
   difficulties: String, //beginner - average - difficult
