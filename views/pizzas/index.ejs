@@ -1,30 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
-   
+   <!-- BOOTSTRAP -->
     <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.2.1/litera/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-DkdUb51XC4VPExQljj9mtMYspLBzNJscXpAnuo0rcJcLd7aeOH3jnz6cS1v8OFMW"
       crossorigin="anonymous"></link>
-  
+  <!-- FONT AWESOME -->
       <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" 
       rel="stylesheet" 
       integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" 
       crossorigin="anonymous"></link>
+
       <% include ../pizzas/head %>
   </head>
 
   <body class="bg-warning">
-    <div class="container bg-white">
-
-      <div class="text-right">
-        <a href="/login" class="btn btn-default m-2"><span class="fa fa-user"></span> Local Login</a>
-        <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span> Local Signup</a>
-        <a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span> Facebook</a>
-        <a href="/auth/twitter" class="btn btn-info"><span class="fa fa-twitter"></span> Twitter</a>
-      </div>
-
-      
+     
+    <div class="container bg-white"> 
+        <% include ../pizzas/header %>
       <div class="jumbotron text-center">
         <h1>sirPizza</h1>
         <p class="lead">Share your favorite pizzas!</p>
