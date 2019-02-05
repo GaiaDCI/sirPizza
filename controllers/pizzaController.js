@@ -58,7 +58,7 @@ pizzaController.show = (req, res) => {
 pizzaController.edit = (req, res) => {
   PizzaRecipe.findOne({ _id: req.params.id }).exec((error, pizza) => {
     if (error) {
-      console.log(error);
+      console.log("YOU HAVE AN ERROR:", error);
     } else {
       res.render("../views/pizzas/edit", { pizza: pizza });
     }
@@ -78,7 +78,7 @@ pizzaController.update = (req, res) => {
       }
     },
     { new: true },
-    (error, restaurant) => {
+    (error, pizza) => {
       if (error) {
         console.log(error);
         res.render("../views/pizzas/edit", { pizza: req.body });
@@ -88,6 +88,7 @@ pizzaController.update = (req, res) => {
     }
   );
 };
+
 //DELETE
 pizzaController.delete = (req, res) => {
   PizzaRecipe.remove({ _id: req.params.id }, error => {

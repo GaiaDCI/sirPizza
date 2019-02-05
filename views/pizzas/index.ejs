@@ -15,35 +15,45 @@
       <% include ../pizzas/head %>
   </head>
 
-  <body class="bg-warning">
-     
+  <body>
     <div class="container bg-white"> 
+      <!-- ICON BAR -->
         <% include ../pizzas/header %>
+      <!-- JUMBOTRON -->
       <div class="jumbotron text-center">
         <h1>sirPizza</h1>
         <p class="lead">Share your favorite pizzas!</p>
       </div>
-
-      
       <h3 class="text-center">
         <a href="/pizzas/create">
           Crate the best pizza your life!
         </a>
       </h3>
-
-     
-      <ul class="list-group">
-        <% for(let i=0; i < pizzas.length; i++) {%>
-          <li class="list-group-item">
-          <a href="/pizzas/show/<%= pizzas[i]._id%>" class="font-weight-bold text-danger"><%= pizzas[i].name %></a>
-        </li>
-        <li class="list-group-item"><%= pizzas[i].expense %></li>
-        <li class="list-group-item"><%= pizzas[i].ingredients %></li>
-        <li class="list-group-item"><%= pizzas[i].difficulties %></li>
-        <li class="list-group-item"><%= pizzas[i].description %></li>
-        <% } %>
-      </ul>
-      
-    </div>
+      <!-- FINE JUMBOTRON -->
+      <!-- CARD -->
+      <!-- <div class="card bg-warning p-2 text-center"> -->
+        <div class="container bg-info">
+              <div class="card-body border border-warning" style="width: 20%;">
+                  <% for(let i=0; i < pizzas.length; i++) {%>
+                    <img src="..." class="card-img-top" alt="..." />
+                <h5>
+                  <a href="/pizzas/show/<%= pizzas[i]._id%>" 
+                  class="font-weight-bold text-danger card-link">
+                  <%= pizzas[i].name %>
+                  
+                  </a>
+                </h5>
+                <ul class="list-group list-group-flush"></ul>
+                  <p class="card-text">Expense: <%= pizzas[i].expense %></p>
+                  <p class="card-text">Ingredients: <%= pizzas[i].ingredients %></p>
+                  <p class="card-text">Difficulties: <%= pizzas[i].difficulties %></p>
+                  <p class="card-text">Description: <%= pizzas[i].description %></p>
+                </ul>
+                <% } %>
+              </div>
+        </div>
+      <!-- FINE CARD  -->
+      <!-- CONTAINER BIANCO -->
+    </div> 
   </body>
 </html>
