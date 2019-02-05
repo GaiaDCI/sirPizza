@@ -1,25 +1,19 @@
 {
-  "name": "sirpizza",
+  "name": "pizza_maker",
   "version": "1.0.0",
-  "description": "Pizza crud",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/GaiaDCI/sirPizza.git"
-  },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/GaiaDCI/sirPizza/issues"
-  },
-  "homepage": "https://github.com/GaiaDCI/sirPizza#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "bootstrap": "^4.2.1",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
-    "mongoose": "^5.4.7"
+    "mongoose": "^5.4.9",
+    "nodemon": "^1.18.9"
   }
 }

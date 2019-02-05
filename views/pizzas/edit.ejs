@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.2.1/litera/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-DkdUb51XC4VPExQljj9mtMYspLBzNJscXpAnuo0rcJcLd7aeOH3jnz6cS1v8OFMW"
+      crossorigin="anonymous"></link>
+  </head>
+  <body>
+    <div class="container bg-danger">
+      <h1>Edit your pizza</h1>
+      <form
+        action="/pizzas/update/
+      <%= pizza._id %>"
+        method="post"
+      >
+        <p>Name:</p>
+        <input type="text" value="<%= pizza.name %>" name="name" />
+        <p>expense:</p>
+        <input name="expense" value="%= pizza.expense %>" />
+        <p>ingredients:</p>
+        <input
+          type="text"
+          name="ingredients"
+          value="<%= pizza.ingredients %>"
+        />
+        <p>difficulties:</p>
+        <input
+          type="text"
+          name="difficulties"
+          value="%= pizza.difficulties %>"
+        />
+        <p>description:</p>
+        <input type="text" name="description" />
+        <input type="submit" value="submit resto" />
+      </form>
+    </div>
+  </body>
+</html>
