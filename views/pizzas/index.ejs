@@ -11,13 +11,22 @@
           Crate the best pizza in your life!
         </a>
       </h3>
+        <script>
+            let search = () =>{
+                let searchBar = document.querySelector('.searchBar')
+                console.log(searchBar.value)
+                document.location.href=`http://localhost:3000/pizzas/search?query=${searchBar.value}`
+            }
+        </script>
+        <input type="text" placeholder="Search...." class="searchBar"/>
+        <button onclick="search()">Search</button>
       <!-- FINE JUMBOTRON -->
       <!-- CARD -->
       <!-- <div class="card bg-warning p-2 text-center"> -->
         <div class="container row bg-info">
             <% for(let i=0; i < pizzas.length; i++) {%>
               <div class="col border bg-warning" style="width: 20%;">
-                 
+
                     <img src="..." class="card-img-top" alt="..." />
                   <h5>
                     <a href="/pizzas/show/<%= pizzas[i]._id%>" 
@@ -32,11 +41,11 @@
                     <p class="card-text">Difficulties: <%= pizzas[i].difficulties %></p>
                     <p class="card-text">Description: <%= pizzas[i].description %></p>
                   </ul>
-              
+
               </div> <!-- FINE CARD  -->
               <% } %>
         </div>
-      
+
       <!-- CONTAINER BIANCO -->
     </div> 
   </body>

@@ -15,9 +15,35 @@ pizzaController.list = (req, res) => {
   });
 };
 
-// pizzaController.contact2 = (req, res) => {
-//   res.render("../views/pizzas/contact2");
-// };
+//search
+pizzaController.search = (req, res) => {
+  let query = req.query.query;
+  console.log(query)
+  PizzaRecipe.find({ name: new RegExp(`${query}`)}).exec((error, pizzas) => {
+
+    if (error) {
+      console.log("Error:", error);
+
+    } else {
+      res.render("../views/pizzas/index", {pizzas: pizzas});
+      // console.log(pizzas)
+      //   res.json(pizzas)
+    }
+  });
+}
+
+
+//Pizza home
+pizzaController.home = (req, res) => {
+  PizzaRecipe.find({}).exec((error, pizzas) => {
+    if (error) {
+      console.log("Error:", error);
+    } else {
+      res.render("../views/pizzas/index", { pizzas: pizzas });
+    }
+  });
+};
+
 
 //CREATE METHOD
 pizzaController.create = (req, res) => {
