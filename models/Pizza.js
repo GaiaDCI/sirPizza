@@ -6,7 +6,7 @@ const pizzaSchema = new mongoose.Schema({
     required: "like Margherita"
   },
   expense: {
-    type: String
+    type: Number
   },
   ingredients: {
     type: String
@@ -16,7 +16,8 @@ const pizzaSchema = new mongoose.Schema({
   },
   description: {
     type: String
-  }
+  },
+  image: {}
 });
 
 module.exports = pizzaSchema;
