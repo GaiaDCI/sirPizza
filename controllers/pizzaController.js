@@ -15,10 +15,6 @@ pizzaController.list = (req, res) => {
   });
 };
 
-// pizzaController.contact2 = (req, res) => {
-//   res.render("../views/pizzas/contact2");
-// };
-
 //CREATE METHOD
 pizzaController.create = (req, res) => {
   res.render("../views/pizzas/create");

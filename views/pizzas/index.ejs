@@ -1,29 +1,31 @@
 
   <% include ../pizzas/header %>
-    <div class="container bg-white"> 
+
+    <div class="container"> 
+
       <!-- JUMBOTRON -->
-      <div class="jumbotron text-center">
-        <h1>sirPizza</h1>
-        <p class="lead">Share your favorite pizzas!</p>
+      <div class="text-center">
+        <div class="jumbotron">
+          <h1>sirPizza</h1>
+          <p class="lead">Share your favorite pizzas!</p>
+        </div>
+        <h3>
+          <a href="/pizzas/create">
+            Crate the best pizza in your life!
+          </a>
+        </h3>
       </div>
-      <h3 class="text-center">
-        <a href="/pizzas/create">
-          Crate the best pizza in your life!
-        </a>
-      </h3>
       <!-- FINE JUMBOTRON -->
+
       <!-- CARD -->
-      <!-- <div class="card bg-warning p-2 text-center"> -->
-        <div class="container row bg-info">
+      <div class="container row">
             <% for(let i=0; i < pizzas.length; i++) {%>
-              <div class="col border bg-warning" style="width: 20%;">
-                 
-                    <img src="..." class="card-img-top" alt="..." />
+              <div class="col border bg-warning">
+                  <img src="..." class="card-img-top" alt="..." />
                   <h5>
                     <a href="/pizzas/show/<%= pizzas[i]._id%>" 
                     class="font-weight-bold text-danger card-link">
                     <%= pizzas[i].name %>
-                    
                     </a>
                   </h5>
                   <ul class=" col list-group list-group-flush"></ul>
@@ -32,12 +34,9 @@
                     <p class="card-text">Difficulties: <%= pizzas[i].difficulties %></p>
                     <p class="card-text">Description: <%= pizzas[i].description %></p>
                   </ul>
-              
-              </div> <!-- FINE CARD  -->
-              <% } %>
-        </div>
-      
-      <!-- CONTAINER BIANCO -->
-    </div> 
+              </div> 
+            <% } %>
+      </div> <!-- FINE ROW  -->
+    </div> <!-- CONTAINER BIANCO -->
   </body>
 </html>
