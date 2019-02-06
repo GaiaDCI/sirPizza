@@ -1,24 +1,6 @@
-<!DOCTYPE html>
-<html>
-  <head>
-   <!-- BOOTSTRAP -->
-    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.2.1/litera/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-DkdUb51XC4VPExQljj9mtMYspLBzNJscXpAnuo0rcJcLd7aeOH3jnz6cS1v8OFMW"
-      crossorigin="anonymous"></link>
-  <!-- FONT AWESOME -->
-      <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" 
-      rel="stylesheet" 
-      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" 
-      crossorigin="anonymous"></link>
 
-      <% include ../pizzas/head %>
-  </head>
-
-  <body>
+  <% include ../pizzas/header %>
     <div class="container bg-white"> 
-      <!-- ICON BAR -->
-        <% include ../pizzas/header %>
       <!-- JUMBOTRON -->
       <div class="jumbotron text-center">
         <h1>sirPizza</h1>
@@ -26,33 +8,35 @@
       </div>
       <h3 class="text-center">
         <a href="/pizzas/create">
-          Crate the best pizza your life!
+          Crate the best pizza in your life!
         </a>
       </h3>
       <!-- FINE JUMBOTRON -->
       <!-- CARD -->
       <!-- <div class="card bg-warning p-2 text-center"> -->
-        <div class="container bg-info">
-              <div class="card-body border border-warning" style="width: 20%;">
-                  <% for(let i=0; i < pizzas.length; i++) {%>
+        <div class="container row bg-info">
+            <% for(let i=0; i < pizzas.length; i++) {%>
+              <div class="col border bg-warning" style="width: 20%;">
+                 
                     <img src="..." class="card-img-top" alt="..." />
-                <h5>
-                  <a href="/pizzas/show/<%= pizzas[i]._id%>" 
-                  class="font-weight-bold text-danger card-link">
-                  <%= pizzas[i].name %>
-                  
-                  </a>
-                </h5>
-                <ul class="list-group list-group-flush"></ul>
-                  <p class="card-text">Expense: <%= pizzas[i].expense %></p>
-                  <p class="card-text">Ingredients: <%= pizzas[i].ingredients %></p>
-                  <p class="card-text">Difficulties: <%= pizzas[i].difficulties %></p>
-                  <p class="card-text">Description: <%= pizzas[i].description %></p>
-                </ul>
-                <% } %>
-              </div>
+                  <h5>
+                    <a href="/pizzas/show/<%= pizzas[i]._id%>" 
+                    class="font-weight-bold text-danger card-link">
+                    <%= pizzas[i].name %>
+                    
+                    </a>
+                  </h5>
+                  <ul class=" col list-group list-group-flush"></ul>
+                    <p class="card-text">Expense: <%= pizzas[i].expense %></p>
+                    <p class="card-text">Ingredients: <%= pizzas[i].ingredients %></p>
+                    <p class="card-text">Difficulties: <%= pizzas[i].difficulties %></p>
+                    <p class="card-text">Description: <%= pizzas[i].description %></p>
+                  </ul>
+              
+              </div> <!-- FINE CARD  -->
+              <% } %>
         </div>
-      <!-- FINE CARD  -->
+      
       <!-- CONTAINER BIANCO -->
     </div> 
   </body>
