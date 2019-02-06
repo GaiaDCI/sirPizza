@@ -1,7 +1,18 @@
-<!DOCTYPE html>
-<html>
-  <head> </head>
-  <body>
-    <h1>PIZZAAAAA</h1>
+
+  <% include ./pizzas/header %>
+
+
+  <script>
+    let search = () =>{
+      let searchBar = document.querySelector('.searchBar')
+      console.log(searchBar.value)
+      document.location.href=`http://localhost:3000/pizzas/search?query=${searchBar.value}`
+    }
+  </script>
+  <input type="text" placeholder="Search...." class="searchBar"/>
+  <button onclick="search()">Search</button>
+
+
   </body>
 </html>
+git

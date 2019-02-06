@@ -4,6 +4,17 @@ const pizzaSchema = require("../models/Pizza");
 const PizzaRecipe = mongoose.model("Pizza", pizzaSchema);
 const pizzaController = {};
 
+//LIST ALL
+pizzaController.list = (req, res) => {
+  PizzaRecipe.find({}).exec((error, pizzas) => {
+    if (error) {
+      console.log("Error:", error);
+    } else {
+      res.render("../views/pizzas/index", { pizzas: pizzas });
+    }
+  });
+};
+
 //search
 pizzaController.search = (req, res) => {
   let query = req.query.query;
@@ -15,11 +26,12 @@ pizzaController.search = (req, res) => {
 
     } else {
       res.render("../views/pizzas/index", {pizzas: pizzas});
-   // console.log(pizzas)
-   //   res.json(pizzas)
+      // console.log(pizzas)
+      //   res.json(pizzas)
     }
   });
 }
+
 
 //Pizza home
 pizzaController.home = (req, res) => {
@@ -32,13 +44,6 @@ pizzaController.home = (req, res) => {
   });
 };
 
-// pizzaController.list = (req, res) => {
-//       res.render("../views/pizzas/index", { pizzasName: pizzas.name });
-// };
-
-// pizzaController.contact2 = (req, res) => {
-//   res.render("../views/pizzas/contact2");
-// };
 
 //CREATE METHOD
 pizzaController.create = (req, res) => {
@@ -79,7 +84,7 @@ pizzaController.show = (req, res) => {
 pizzaController.edit = (req, res) => {
   PizzaRecipe.findOne({ _id: req.params.id }).exec((error, pizza) => {
     if (error) {
-      console.log(error);
+      console.log("YOU HAVE AN ERROR:", error);
     } else {
       res.render("../views/pizzas/edit", { pizza: pizza });
     }
@@ -99,7 +104,7 @@ pizzaController.update = (req, res) => {
       }
     },
     { new: true },
-    (error, restaurant) => {
+    (error, pizza) => {
       if (error) {
         console.log(error);
         res.render("../views/pizzas/edit", { pizza: req.body });
@@ -109,6 +114,7 @@ pizzaController.update = (req, res) => {
     }
   );
 };
+
 //DELETE
 pizzaController.delete = (req, res) => {
   PizzaRecipe.remove({ _id: req.params.id }, error => {
