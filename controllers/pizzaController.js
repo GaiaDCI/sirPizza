@@ -1,14 +1,43 @@
 const mongoose = require("mongoose");
+
 const pizzaSchema = require("../models/Pizza");
 const PizzaRecipe = mongoose.model("Pizza", pizzaSchema);
 const pizzaController = {};
-require('dotenv').config()
-const cloudinary = require('cloudinary');
+
+require("dotenv").config();
+const cloudinary = require("cloudinary");
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
   api_key: process.env.API_KEY,
-  api_secret: process.env.API_SECRET,
-})
+  api_secret: process.env.API_SECRET
+});
+
+//search
+pizzaController.search = (req, res) => {
+  let query = req.query.query;
+  console.log(query);
+  PizzaRecipe.find({ name: new RegExp(`${query}`) }).exec((error, pizzas) => {
+    if (error) {
+      console.log("Error:", error);
+    } else {
+      res.render("../views/pizzas/index", { pizzas: pizzas });
+      // console.log(pizzas)
+      //   res.json(pizzas)
+    }
+  });
+};
+
+//Pizza home
+pizzaController.home = (req, res) => {
+  PizzaRecipe.find({}).exec((error, pizzas) => {
+    if (error) {
+      console.log("Error:", error);
+    } else {
+      res.render("../views/pizzas/index", { pizzas: pizzas });
+    }
+  });
+};
+
 //LIST ALL
 pizzaController.list = (req, res) => {
   PizzaRecipe.find({}).exec((error, pizzas) => {
@@ -20,10 +49,6 @@ pizzaController.list = (req, res) => {
   });
 };
 
-// pizzaController.contact2 = (req, res) => {
-//   res.render("../views/pizzas/contact2");
-// };
-
 //CREATE METHOD
 pizzaController.create = (req, res) => {
   res.render("../views/pizzas/create");
@@ -34,7 +59,6 @@ pizzaController.save = async (req, res) => {
   // console.log(req.file);
   const cloudUpload = await cloudinary.v2.uploader.upload(req.file.path);
   console.log(cloudUpload);
-
   let pizza = new PizzaRecipe({
     name: req.body.name,
     expense: req.body.expense,
@@ -69,7 +93,7 @@ pizzaController.show = (req, res) => {
 pizzaController.edit = (req, res) => {
   PizzaRecipe.findOne({ _id: req.params.id }).exec((error, pizza) => {
     if (error) {
-      console.log(error);
+      console.log("YOU HAVE AN ERROR:", error);
     } else {
       res.render("../views/pizzas/edit", { pizza: pizza });
     }
@@ -99,6 +123,7 @@ pizzaController.update = (req, res) => {
     }
   );
 };
+
 //DELETE
 pizzaController.delete = (req, res) => {
   PizzaRecipe.remove({ _id: req.params.id }, error => {

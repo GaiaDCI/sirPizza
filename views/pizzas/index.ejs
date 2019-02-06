@@ -1,67 +1,44 @@
-<!DOCTYPE html>
-<html>
 
-<head>
+  <% include ../pizzas/header %>
 
-  <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.2.1/litera/bootstrap.min.css" rel="stylesheet" integrity="sha384-DkdUb51XC4VPExQljj9mtMYspLBzNJscXpAnuo0rcJcLd7aeOH3jnz6cS1v8OFMW"
-    crossorigin="anonymous">
-  </link>
+    <div class="container"> 
+      <!-- JUMBOTRON -->
+      <div class="text-center">
+        <div class="jumbotron">
+          <h1>sirPizza</h1>
+          <p class="lead">Share your favorite pizzas!</p>
+        </div>
+        <h3>
+          <a href="/pizzas/create">
+            Crate the best pizza in your life!
+          </a>
+        </h3>
+      </div>
+      <!-- FINE JUMBOTRON -->
 
-  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  </link>
-  <% include ../pizzas/head %>
-</head>
-
-<body class="bg-warning">
-  <div class="container bg-white">
-
-    <div class="text-right">
-      <a href="/login" class="btn btn-default m-2"><span class="fa fa-user"></span> Local Login</a>
-      <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span> Local Signup</a>
-      <a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span> Facebook</a>
-      <a href="/auth/twitter" class="btn btn-info"><span class="fa fa-twitter"></span> Twitter</a>
-    </div>
-
-
-    <div class="jumbotron text-center">
-      <h1>sirPizza</h1>
-      <p class="lead">Share your favorite pizzas!</p>
-    </div>
-
-
-    <h3 class="text-center">
-      <a href="/pizzas/create">
-        Crate the best pizza your life!
-      </a>
-    </h3>
-
-
-    <ul class="list-group">
-      <% for(let i=0; i < pizzas.length; i++) {%>
-      <li class="list-group-item">
-        <a href="/pizzas/show/<%= pizzas[i]._id%>" class="font-weight-bold text-danger">
-          <%= pizzas[i].name %></a>
-      </li>
-      <li class="list-group-item">
-        <%= pizzas[i].expense %>
-      </li>
-      <li class="list-group-item">
-        <%= pizzas[i].ingredients %>
-      </li>
-      <li class="list-group-item">
-        <%= pizzas[i].difficulties %>
-      </li>
-      <li class="list-group-item">
-        <%= pizzas[i].description %>
-      </li>
-      <li>
-        <img src="<%= pizzas[i].image%>" alt="">
-      </li>
-      <% } %>
-    </ul>
-
-  </div>
-</body>
-
+      <!-- CARD -->
+      <div class="container row">
+            <% for(let i=0; i < pizzas.length; i++) {%>
+              <div class="col border bg-warning">
+               
+                  <h5>
+                    <a href="/pizzas/show/<%= pizzas[i]._id%>" 
+                    class="font-weight-bold text-danger card-link">
+                    <%= pizzas[i].name %>
+                    </a>
+                  </h5>
+                  <ul class=" col list-group list-group-flush"></ul>
+                    <p class="card-text">Expense: <%= pizzas[i].expense %></p>
+                    <p class="card-text">Ingredients: <%= pizzas[i].ingredients %></p>
+                    <p class="card-text">Difficulties: <%= pizzas[i].difficulties %></p>
+                    <p class="card-text">Description: <%= pizzas[i].description %></p>
+                    <li>
+                      <img class="card-img-top" src="<%= pizzas[i].image%>" alt="">
+                  </li>
+                  </ul>
+              </div> 
+            <% } %>
+      </div> <!-- FINE ROW  -->
+    </div> <!-- CONTAINER BIANCO -->
+  </body>
 </html>

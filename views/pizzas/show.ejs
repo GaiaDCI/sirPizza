@@ -1,33 +1,26 @@
-<!DOCTYPE html>
-<html>
+<% include ../pizzas/header %>
 
-<head> </head>
 
-<body>
-  <div class="container">
-    <h1>show page</h1>
-    <h3>
-      <%= pizza.name %>
-    </h3>
-    <p>
-      <%= pizza.expense %>
-    </p>
-    <p>
-      <%= pizza.ingredients%>
-    </p>
-    <p>
-      <%= pizza.difficulties%>
-    </p>
-    <p>
-      <%= pizza.description%>
-    </p>
+    <div class="container">
+     
+      <h1><%= pizza.name %></h1>
 
-    <p><a href="/pizzas/edit/<%=pizza._id%>">Edit</a></p>
-    <h3><a href="/pizzas">List</a></h3>
-    <form action="/pizzas/delete/<%=pizza._id%>" method="post">
-      <button type="submit">Delete it</button>
-    </form>
-  </div>
-</body>
+      <p><%= pizza.expense %></p>
+      <p><%= pizza.ingredients%></p>
+      <p><%= pizza.difficulties%></p>
+      <p><%= pizza.description%></p>
 
+      <form action="/pizzas/edit/<%=pizza._id%>" method="get">
+        <button type="submit">edit</button>
+      </form>
+
+      <form action="/pizzas" method="post">
+        <a href="/pizzas">Go back to the list</a>
+      </form>
+
+      <form action="/pizzas/delete/<%=pizza._id%>" method="post">
+        <button type="submit">Delete it</button>
+      </form>
+    </div>
+  </body>
 </html>
