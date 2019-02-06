@@ -1,19 +1,33 @@
 <!DOCTYPE html>
 <html>
-  <head> </head>
-  <body>
-    <div class="container">
-      <h1>show page</h1>
-      <h3><%= pizza.name %></h3>
-      <p><%= pizza.expense %></p>
-      <p><%= pizza.ingredients%></p>
-      <p><%= pizza.difficulties%></p>
-      <p><%= pizza.description%></p>
-      <p><a href="/pizzas/edit/<%=pizza._id%>">Edit</a></p>
-      <h3><a href="/pizzas">List</a></h3>
-      <form action="/pizzas/delete/<%=pizza._id%>" method="post">
-        <button type="submit">Delete it</button>
-      </form>
-    </div>
-  </body>
+
+<head> </head>
+
+<body>
+  <div class="container">
+    <h1>show page</h1>
+    <h3>
+      <%= pizza.name %>
+    </h3>
+    <p>
+      <%= pizza.expense %>
+    </p>
+    <p>
+      <%= pizza.ingredients%>
+    </p>
+    <p>
+      <%= pizza.difficulties%>
+    </p>
+    <p>
+      <%= pizza.description%>
+    </p>
+
+    <p><a href="/pizzas/edit/<%=pizza._id%>">Edit</a></p>
+    <h3><a href="/pizzas">List</a></h3>
+    <form action="/pizzas/delete/<%=pizza._id%>" method="post">
+      <button type="submit">Delete it</button>
+    </form>
+  </div>
+</body>
+
 </html>

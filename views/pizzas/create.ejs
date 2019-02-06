@@ -1,23 +1,28 @@
 <!DOCTYPE html>
 <html>
-  <head> </head>
-  <body>
-    <div class="container">
-      <h1>title</h1>
-      <form action="/pizzas/save" method="post">
-        <p>Name:</p>
-        <input type="text" name="name" />
-        <p>expense:</p>
-        <input type="number" name="expense" />
-        <p>ingredients:</p>
-        <input type="text" name="ingredients" />
-        <p>difficulties:</p>
-        <input type="text" name="difficulties" />
-        <p>description:</p>
-        <textarea type="text" name="description"></textarea>
 
-        <input type="submit" value="submit resto" />
-      </form>
-    </div>
-  </body>
+<head> </head>
+
+<body>
+  <div class="container">
+    <h1>title</h1>
+    <form action="/pizzas/save" method="post" enctype="multipart/form-data">
+      <p>Name:</p>
+      <input type="text" name="name" />
+      <p>expense:</p>
+      <input type="number" name="expense" />
+      <p>ingredients:</p>
+      <input type="text" name="ingredients" />
+      <p>difficulties:</p>
+      <input type="text" name="difficulties" />
+      <p>description:</p>
+      <textarea type="text" name="description"></textarea>
+      <p>Image:</p>
+      <input type="file" name="picturePizza">
+
+      <input type="submit" value="submit resto" />
+    </form>
+  </div>
+</body>
+
 </html>

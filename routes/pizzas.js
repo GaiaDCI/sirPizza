@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-
+const upload = require('../handler/multer')
 const pizza = require("../controllers/pizzaController.js");
 
 //Get all restaurants
@@ -8,7 +8,7 @@ router.get("/", pizza.list);
 //Create restaurant
 router.get("/create", pizza.create);
 //Save restaurant
-router.post("/save", pizza.save);
+router.post("/save", upload.single('picturePizza'), pizza.save);
 //Get single restaurant by id
 router.get("/show/:id", pizza.show);
 //Edit restaurant
