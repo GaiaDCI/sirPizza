@@ -1,9 +1,14 @@
 const mongoose = require("mongoose");
-
 const pizzaSchema = require("../models/Pizza");
 const PizzaRecipe = mongoose.model("Pizza", pizzaSchema);
 const pizzaController = {};
-
+require('dotenv').config()
+const cloudinary = require('cloudinary');
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET,
+})
 //LIST ALL
 pizzaController.list = (req, res) => {
   PizzaRecipe.find({}).exec((error, pizzas) => {
@@ -24,13 +29,19 @@ pizzaController.create = (req, res) => {
   res.render("../views/pizzas/create");
 };
 
-pizzaController.save = (req, res) => {
+pizzaController.save = async (req, res) => {
+  //upload to cloudinary
+  // console.log(req.file);
+  const cloudUpload = await cloudinary.v2.uploader.upload(req.file.path);
+  console.log(cloudUpload);
+
   let pizza = new PizzaRecipe({
     name: req.body.name,
     expense: req.body.expense,
     ingredients: req.body.ingredients,
     difficulties: req.body.difficulties,
-    description: req.body.description
+    description: req.body.description,
+    image: cloudUpload.url
   });
   pizza.save(error => {
     if (error) {
@@ -78,7 +89,7 @@ pizzaController.update = (req, res) => {
       }
     },
     { new: true },
-    (error, restaurant) => {
+    (error, pizza) => {
       if (error) {
         console.log(error);
         res.render("../views/pizzas/edit", { pizza: req.body });
