@@ -1,4 +1,4 @@
-<% include ./pizzas/header %>
+<!-- HEADER --> <% include ./pizzas/header %>
 
     <script>
       let search = () => {
@@ -9,8 +9,17 @@
         }`;
       };
     </script>
-    <input type="text" placeholder="Search...." class="searchBar" />
-    <button onclick="search()">Search</button>
 
+<!-- SEARCH-PART -->
+  <div class="form-inline justify-content-center">
+    <div class="position-absolute">
+      <input type="text" placeholder="Search...." class="searchBar form-control mr-sm-2" />
+      <button onclick="search()">Search</button>
+    </div>
+      <img src="https://previews.123rf.com/images/romastudio/romastudio1602/romastudio160200131/51686551-pizza-heart-shape-with-ingredients-and-copy-spase-on-vintage-background-happy-valentines-day-love-co.jpg" class="card-img" alt="">
+  </div> 
+
+<!-- FOOTER   -->
+<% include ./pizzas/footer %>
   </body>
 </html>
