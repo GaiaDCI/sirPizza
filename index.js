@@ -9,8 +9,6 @@ const app = express();
 const mongoose = require("mongoose");
 const pizzas = require("./routes/pizzas");
 
-const home = require("./routes/search");
-
 mongoose
   .connect(`mongodb://localhost:27017/restos`, { useNewUrlParser: true })
   .then(() => {
@@ -23,7 +21,7 @@ mongoose
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/pizzas", pizzas);
-app.use("/", home);
+app.use("/", pizzas);
 
 app.set("views", path.join(__dirname, "./views"));
 app.set("view engine", "ejs");

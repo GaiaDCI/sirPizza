@@ -1,8 +1,14 @@
 const mongoose = require("mongoose");
 
+// Pizza Model
 const pizzaSchema = require("../models/Pizza");
 const PizzaRecipe = mongoose.model("Pizza", pizzaSchema);
 const pizzaController = {};
+
+// Ingredients Model
+const ingredientsSchema = require('../models/Ingredients');
+const ListIngredients = mongoose.model('list', ingredientsSchema);
+
 
 require("dotenv").config();
 const cloudinary = require("cloudinary");
@@ -33,7 +39,7 @@ pizzaController.home = (req, res) => {
     if (error) {
       console.log("Error:", error);
     } else {
-      res.render("../views/pizzas/index", { pizzas: pizzas });
+      res.render("../views/index", { pizzas: pizzas });
     }
   });
 };
@@ -51,7 +57,10 @@ pizzaController.list = (req, res) => {
 
 //CREATE METHOD
 pizzaController.create = (req, res) => {
-  res.render("../views/pizzas/create");
+  ListIngredients.find({}).exec((error, ingredients) => {
+
+    res.render("../views/pizzas/create", { ingredients: ingredients });
+  })
 };
 
 pizzaController.save = async (req, res) => {
@@ -62,11 +71,14 @@ pizzaController.save = async (req, res) => {
   let pizza = new PizzaRecipe({
     name: req.body.name,
     expense: req.body.expense,
-    ingredients: req.body.ingredients,
+    // ingredients: req.body.ingredients,
     difficulties: req.body.difficulties,
     description: req.body.description,
     image: cloudUpload.url
   });
+
+  console.log(req.body);
+
   pizza.save(error => {
     if (error) {
       console.log(error);
