@@ -1,0 +1,27 @@
+
+  <% include ../pizzas/header %>
+    <div class="container bg-info">
+      <h1>Edit your pizza</h1>
+
+        <form
+          action="/pizzas/update/<%= pizza._id %>"
+          method="post"
+        >
+            <p>Name:</p>
+            <input type="text" value="<%= pizza.name %>" name="name" />
+            <p>expense:</p>
+            <input type="text" value="<%= pizza.expense %>" name="expense" />
+            <p>ingredients:</p>
+            <input type="text" value="<%= pizza.ingredients %>" name="ingredients" />
+            <p>difficulties:</p>
+            <input type="text" value="<%= pizza.difficulties %>"  name="difficulties" />
+            <p>description:</p>
+            <textarea type="text" name="description"><%= pizza.description %></textarea>
+
+            <input type="submit" value="submit resto" />
+          
+        </form>
+    </div>
+  </body>
+
+</html>
