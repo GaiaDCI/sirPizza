@@ -1,0 +1,17 @@
+
+    <script>
+      let search = () => {
+        let searchBar = document.querySelector(".searchBar");
+        console.log(searchBar.value);
+        document.location.href = `http://localhost:3000/pizzas/search?query=${
+          searchBar.value
+        }`;
+      };
+    </script>
+  <% include ./pizzas/header %>
+  
+    <% include ./pizzas/searchbar %>
+    
+  <% include ./pizzas/footer %>
+  </body>
+</html>
