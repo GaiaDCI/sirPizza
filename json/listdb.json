@@ -1,9 +1,0 @@
-{
-  "margherita": {
-    "name": "Margherita",
-    "expense": 7,
-    "ingredients": ["mozzarella", "tomato"],
-    "difficulties": "easy",
-    "description": "invented by egiptian in 1902"
-  }
-}

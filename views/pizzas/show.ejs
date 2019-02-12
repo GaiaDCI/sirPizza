@@ -1,26 +1,39 @@
 <% include ../pizzas/header %>
 
 
-    <div class="container">
-     
-      <h1><%= pizza.name %></h1>
+<div class="container">
 
-      <p><%= pizza.expense %></p>
-      <p><%= pizza.ingredients%></p>
-      <p><%= pizza.difficulties%></p>
-      <p><%= pizza.description%></p>
+  <h1>
+    <%= pizza.name %>
+  </h1>
 
-      <form action="/pizzas/edit/<%=pizza._id%>" method="get">
-        <button type="submit">edit</button>
-      </form>
+  <p>
+    <%= pizza.expense %>
+  </p>
+  <p>ingredients:</p>
+  <% for(let i=0; i< ingredients.length; i++){ %>
+  <input type="checkbox" name="ingredient" value="<%= ingredients[i]._id %>">
+  <%= ingredients[i].name %>
+  <% } %>
+  <p>
+    <%= pizza.difficulties%>
+  </p>
+  <p>
+    <%= pizza.description%>
+  </p>
 
-      <form action="/pizzas" method="post">
-        <a href="/pizzas">Go back to the list</a>
-      </form>
+  <form action="/pizzas/edit/<%=pizza._id%>" method="get">
+    <button type="submit">edit</button>
+  </form>
 
-      <form action="/pizzas/delete/<%=pizza._id%>" method="post">
-        <button type="submit">Delete it</button>
-      </form>
-    </div>
-  </body>
+  <form action="/pizzas" method="post">
+    <a href="/pizzas">Go back to the list</a>
+  </form>
+
+  <form action="/pizzas/delete/<%=pizza._id%>" method="post">
+    <button type="submit">Delete it</button>
+  </form>
+</div>
+</body>
+
 </html>

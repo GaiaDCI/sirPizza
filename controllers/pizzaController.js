@@ -6,8 +6,8 @@ const PizzaRecipe = mongoose.model("Pizza", pizzaSchema);
 const pizzaController = {};
 
 // Ingredients Model
-const ingredientsSchema = require('../models/Ingredients');
-const ListIngredients = mongoose.model('list', ingredientsSchema);
+const ingredientSchema = require('../models/Ingredient');
+const Ingredients = mongoose.model('Ingredient', ingredientSchema);
 
 
 require("dotenv").config();
@@ -57,27 +57,28 @@ pizzaController.list = (req, res) => {
 
 //CREATE METHOD
 pizzaController.create = (req, res) => {
-  ListIngredients.find({}).exec((error, ingredients) => {
+  Ingredients.find({}).exec((error, ingredients) => {
 
     res.render("../views/pizzas/create", { ingredients: ingredients });
   })
 };
 
 pizzaController.save = async (req, res) => {
+  console.log(req.body);
   //upload to cloudinary
   // console.log(req.file);
   const cloudUpload = await cloudinary.v2.uploader.upload(req.file.path);
-  console.log(cloudUpload);
+  // console.log(cloudUpload);
   let pizza = new PizzaRecipe({
     name: req.body.name,
     expense: req.body.expense,
-    // ingredients: req.body.ingredients,
+    ingredients: req.body.ingredients,
     difficulties: req.body.difficulties,
     description: req.body.description,
     image: cloudUpload.url
   });
 
-  console.log(req.body);
+
 
   pizza.save(error => {
     if (error) {
@@ -96,7 +97,22 @@ pizzaController.show = (req, res) => {
     if (error) {
       console.log("Error:", error);
     } else {
-      res.render("../views/pizzas/show", { pizza: pizza });
+
+      Ingredients.find({ "_id": { "$in": pizza["ingredients_ids"] } }).
+        exec((error, ingredients) => {
+          if (error) {
+            res.render("../views/pizzas/show", {
+              pizza: pizza,
+              ingredients: {}
+            })
+          } else {
+            res.render("../views/pizzas/show", {
+              pizza: pizza,
+              ingredients: ingredients,
+            })
+          }
+        });
+
     }
   });
 };
