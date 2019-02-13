@@ -28,7 +28,6 @@ pizzaController.search = (req, res) => {
     } else {
       res.render("../views/pizzas/index", { pizzas: pizzas });
       // console.log(pizzas)
-      //   res.json(pizzas)
     }
   });
 };
