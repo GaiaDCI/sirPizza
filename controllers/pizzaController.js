@@ -1,8 +1,14 @@
 const mongoose = require("mongoose");
 
+// Pizza Model
 const pizzaSchema = require("../models/Pizza");
 const PizzaRecipe = mongoose.model("Pizza", pizzaSchema);
 const pizzaController = {};
+
+// Ingredients Model
+const ingredientSchema = require('../models/Ingredient');
+const Ingredients = mongoose.model('Ingredient', ingredientSchema);
+
 
 require("dotenv").config();
 const cloudinary = require("cloudinary");
@@ -32,7 +38,7 @@ pizzaController.home = (req, res) => {
     if (error) {
       console.log("Error:", error);
     } else {
-      res.render("../views/pizzas/index", { pizzas: pizzas });
+      res.render("../views/index", { pizzas: pizzas });
     }
   });
 };
@@ -50,14 +56,18 @@ pizzaController.list = (req, res) => {
 
 //CREATE METHOD
 pizzaController.create = (req, res) => {
-  res.render("../views/pizzas/create");
+  Ingredients.find({}).exec((error, ingredients) => {
+
+    res.render("../views/pizzas/create", { ingredients: ingredients });
+  })
 };
 
 pizzaController.save = async (req, res) => {
+  console.log(req.body);
   //upload to cloudinary
   // console.log(req.file);
   const cloudUpload = await cloudinary.v2.uploader.upload(req.file.path);
-  console.log(cloudUpload);
+  // console.log(cloudUpload);
   let pizza = new PizzaRecipe({
     name: req.body.name,
     expense: req.body.expense,
@@ -66,6 +76,9 @@ pizzaController.save = async (req, res) => {
     description: req.body.description,
     image: cloudUpload.url
   });
+
+
+
   pizza.save(error => {
     if (error) {
       console.log(error);
@@ -83,7 +96,22 @@ pizzaController.show = (req, res) => {
     if (error) {
       console.log("Error:", error);
     } else {
-      res.render("../views/pizzas/show", { pizza: pizza });
+
+      Ingredients.find({ "_id": { "$in": pizza["ingredients_ids"] } }).
+        exec((error, ingredients) => {
+          if (error) {
+            res.render("../views/pizzas/show", {
+              pizza: pizza,
+              ingredients: {}
+            })
+          } else {
+            res.render("../views/pizzas/show", {
+              pizza: pizza,
+              ingredients: ingredients,
+            })
+          }
+        });
+
     }
   });
 };

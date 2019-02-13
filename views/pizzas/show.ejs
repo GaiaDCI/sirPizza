@@ -1,11 +1,16 @@
 <% include ../pizzas/header %>
 
+
     <div class="container">
      
       <h1><%= pizza.name %></h1>
 
       <p><%= pizza.expense %></p>
-      <p><%= pizza.ingredients%></p>
+      <p>ingredients:</p>
+  <% for(let i=0; i< ingredients.length; i++){ %>
+  <input type="checkbox" name="ingredient" value="<%= ingredients[i]._id %>">
+  <%= ingredients[i].name %>
+  <% } %>
       <p><%= pizza.difficulties%></p>
       <p><%= pizza.description%></p>
 
