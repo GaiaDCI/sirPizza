@@ -1,16 +1,31 @@
-<% include ./pizzas/header %>
+<!-- HEADER --><% include ./pizzas/header %>
 
     <script>
       let search = () => {
-        let searchBar = document.querySelector(".searchBar");
+        let searchBar = document.getElementById("searchBar");
         console.log(searchBar.value);
         document.location.href = `http://localhost:3000/pizzas/search?query=${
           searchBar.value
         }`;
-      };
+      };      
     </script>
-    <input type="text" placeholder="Search...." class="searchBar" />
-    <button onclick="search()">Search</button>
 
+<!-- SEARCH BAR HOME PAGE -->
+  <div class="form-inline justify-content-center">
+    <div class="position-absolute">
+      <input type="text" placeholder="Search...." class="form-control" id="searchBar"/>
+      <!-- SEARCH A PIZZZA-->
+      <button onclick="search()" type="button" class="btn font-weight-bold text-light bg-danger">Search</button>
+      <!-- GO TO CREATE -->
+      <button onclick="create()" type="button" class="btn font-weight-bold text-light bg-success">
+        <a href="/pizzas/create">Create
+        </a>
+      </button>
+    </div>
+    <!-- BACKGROUND -->
+    <img src="https://previews.123rf.com/images/romastudio/romastudio1602/romastudio160200131/51686551-pizza-heart-shape-with-ingredients-and-copy-spase-on-vintage-background-happy-valentines-day-love-co.jpg" class="card-img" alt="">
+  </div> 
+
+  <% include ./pizzas/footer %>
   </body>
 </html>
