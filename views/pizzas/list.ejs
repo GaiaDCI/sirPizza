@@ -8,7 +8,7 @@
     </div>
     <h3>
       <a href="/pizzas/create">
-        Create the best pizza in your life!
+        Create your pizza
       </a>
     </h3>
   </div>
@@ -24,7 +24,6 @@
           <%= pizzas[i].name %>
         </a>
       </h5>
-      <ul class=" col"></ul>
       <p class="card-text">Expense:
         <%= pizzas[i].expense %>
       </p>
@@ -37,10 +36,10 @@
       <p class="card-text">Description:
         <%= pizzas[i].description %>
       </p>
-      <li>
-        <img class="card-img-top" src="<%= pizzas[i].image%>" alt="">
-      </li>
-      </ul>
+
+      <img class="card-img-top" src="<%= pizzas[i].image%>" alt="">
+
+
     </div>
     <% } %>
   </div>
