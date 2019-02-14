@@ -20,11 +20,26 @@ pizzaController.search = (req, res) => {
     if (error) {
       console.log("Error:", error);
     } else {
-      res.render("../views/pizzas/index", { pizzas: pizzas });
+      if (pizzas.length < 1){
+        PizzaRecipe.find({}).exec((error, pizzas) => {
+          if (error) {
+            console.log("Error:", error);
+          } else {
+            // let notfoundMsg = {message : 'pizza not found'}
+
+            res.render("../views/pizzas/index", { pizzas: pizzas , message:'Pizza Not Found' });
+          }
+        });
+      } else {
+        res.render("../views/pizzas/index", { pizzas: pizzas , message:'result :' });
+      }
+
+
       // console.log(pizzas)
     }
   });
 };
+
 
 //Pizza home
 pizzaController.home = (req, res) => {
@@ -32,7 +47,7 @@ pizzaController.home = (req, res) => {
     if (error) {
       console.log("Error:", error);
     } else {
-      res.render("../views/pizzas/index", { pizzas: pizzas });
+      res.render("../views/pizzas/index", { pizzas: pizzas, message:'our pizzas' });
     }
   });
 };
@@ -43,7 +58,7 @@ pizzaController.list = (req, res) => {
     if (error) {
       console.log("Error:", error);
     } else {
-      res.render("../views/pizzas/index", { pizzas: pizzas });
+      res.render("../views/pizzas/index", { pizzas: pizzas , message:'our pizzas' });
     }
   });
 };

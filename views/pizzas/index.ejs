@@ -1,6 +1,8 @@
 
   <% include ../pizzas/header %>
+  <script>
 
+  </script>
     <div class="container"> 
       <!-- JUMBOTRON -->
       <div class="text-center">
@@ -8,8 +10,8 @@
           <h1>sirPizza</h1>
           <p class="lead">Share your favorite pizzas!</p>
         </div>
-        <h3>
-          <a href="/pizzas/create">
+        <h3 >
+          <a href="/pizzas/create" class="message">
             Crate the best pizza in your life!
           </a>
         </h3>
@@ -17,10 +19,14 @@
       <!-- FINE JUMBOTRON -->
 
       <!-- CARD -->
+        <% if (message) {%>
+            <h3><%= message %></h3>
+        <%}%>
       <div class="container row">
+
             <% for(let i=0; i < pizzas.length; i++) {%>
+
               <div class="col border bg-warning">
-               
                   <h5>
                     <a href="/pizzas/show/<%= pizzas[i]._id%>" 
                     class="font-weight-bold text-danger card-link">
@@ -39,7 +45,7 @@
               </div> 
             <% } %>
       </div> 
-    </div> 
-  
+    </div>
+
   </body>
 </html>
