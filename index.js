@@ -10,7 +10,7 @@ const mongoose = require("mongoose");
 const pizzas = require("./routes/pizzas");
 
 mongoose
-  .connect(`mongodb://localhost:27017/restos`, { useNewUrlParser: true })
+  .connect(`mongodb://localhost:27017/sirPizza`, { useNewUrlParser: true })
   .then(() => {
     console.log("server is working.");
   })
