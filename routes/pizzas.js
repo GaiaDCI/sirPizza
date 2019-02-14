@@ -5,7 +5,7 @@ const pizza = require("../controllers/pizzaController.js");
 const upload = require("../handler/multer");
 
 router.get("/", pizza.home);
-router.get("/", pizza.list);
+router.get("/list", pizza.list);
 router.get("/search", pizza.search);
 router.get("/create", pizza.create);
 router.post("/save", upload.single("picturePizza"), pizza.save);

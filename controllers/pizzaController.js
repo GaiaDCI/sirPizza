@@ -26,7 +26,7 @@ pizzaController.search = (req, res) => {
     if (error) {
       console.log("Error:", error);
     } else {
-      res.render("../views/pizzas/index", { pizzas: pizzas });
+      res.render("../views/pizzas/list", { pizzas: pizzas });
       // console.log(pizzas)
     }
   });
@@ -49,7 +49,7 @@ pizzaController.list = (req, res) => {
     if (error) {
       console.log("Error:", error);
     } else {
-      res.render("../views/pizzas/index", { pizzas: pizzas });
+      res.render("../views/pizzas/list", { pizzas: pizzas });
     }
   });
 };

@@ -1,0 +1,51 @@
+<% include ../pizzas/header %>
+<div class="container">
+  <!-- JUMBOTRON -->
+  <div class="text-center">
+    <div class="jumbotron">
+      <h1>sirPizza</h1>
+      <p class="lead">Share your favorite pizzas!</p>
+    </div>
+    <h3>
+      <a href="/pizzas/create">
+        Create the best pizza in your life!
+      </a>
+    </h3>
+  </div>
+  <!-- FINE JUMBOTRON -->
+
+  <!-- CARD -->
+  <div class="container row">
+    <% for(let i=0; i < pizzas.length; i++) {%>
+    <div class="col border bg-warning">
+
+      <h5>
+        <a href="/pizzas/show/<%= pizzas[i]._id%>" class="font-weight-bold text-danger card-link">
+          <%= pizzas[i].name %>
+        </a>
+      </h5>
+      <ul class=" col"></ul>
+      <p class="card-text">Expense:
+        <%= pizzas[i].expense %>
+      </p>
+      <p class="card-text">Ingredients:
+        <%= pizzas[i].ingredients_ids %>
+      </p>
+      <p class="card-text">Difficulties:
+        <%= pizzas[i].difficulties %>
+      </p>
+      <p class="card-text">Description:
+        <%= pizzas[i].description %>
+      </p>
+      <li>
+        <img class="card-img-top" src="<%= pizzas[i].image%>" alt="">
+      </li>
+      </ul>
+    </div>
+    <% } %>
+  </div>
+</div>
+
+</body>
+
+</html>
