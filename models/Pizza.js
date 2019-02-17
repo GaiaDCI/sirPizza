@@ -9,6 +9,7 @@ const pizzaSchema = new mongoose.Schema({
     type: Number
   },
   ingredients_ids: [],
+
   difficulties: {
     type: String
   },

@@ -5,6 +5,7 @@ const pizzaSchema = require("../models/Pizza");
 const PizzaRecipe = mongoose.model("Pizza", pizzaSchema);
 const pizzaController = {};
 
+
 // Ingredients Model
 const ingredientSchema = require('../models/Ingredient');
 const Ingredients = mongoose.model('Ingredient', ingredientSchema);
@@ -20,16 +21,36 @@ cloudinary.config({
 
 //search
 pizzaController.search = (req, res) => {
+
   let query = req.query.query;
   console.log(query);
   PizzaRecipe.find({ name: new RegExp(`${query}`) }).exec((error, pizzas) => {
+
+
     if (error) {
       console.log("Error:", error);
     } else {
-      res.render("../views/pizzas/list", { pizzas: pizzas });
-      // console.log(pizzas)
+      if (pizzas.length < 1){
+        PizzaRecipe.find({}).exec((error, pizzas) => {
+          if(error) {
+            console.log("Error:", error);
+          }else {
+
+            res.render("../views/pizzas/list", { pizzas: pizzas , notFound:true, message: 'Pizza Not  Found'});
+
+          }
+        });
+      } else {
+        res.render("../views/pizzas/list", { pizzas: pizzas , notFound:false, message: 'result : '});
+      }
+
+
     }
+
+
   });
+
+
 };
 
 //Pizza home
@@ -45,11 +66,12 @@ pizzaController.home = (req, res) => {
 
 //LIST ALL
 pizzaController.list = (req, res) => {
+
   PizzaRecipe.find({}).exec((error, pizzas) => {
     if (error) {
       console.log("Error:", error);
     } else {
-      res.render("../views/pizzas/list", { pizzas: pizzas });
+      res.render("../views/pizzas/list", { pizzas: pizzas, notFound:false });
     }
   });
 };

@@ -1,30 +1,30 @@
 <% include ../pizzas/header %>
-
-
 <div class="container">
 
-  <h1>
-    <%= pizza.name %>
-  </h1>
 
-  <p>
-    <%= pizza.expense %>
-  </p>
+
+  <h1><%= pizza.name %></h1>
+
+  <p><%= pizza.expense %></p>
   <p>ingredients:</p>
+
   <% for(let i=0; i< ingredients.length; i++){ %>
   <input type="checkbox" name="ingredient" value="<%= ingredients[i]._id %>">
   <%= ingredients[i].name %>
   <% } %>
-  <p>
-    <%= pizza.difficulties%>
-  </p>
-  <p>
-    <%= pizza.description%>
-  </p>
+
+
+  <p><%= pizza.difficulties%></p>
+  <p><%= pizza.description%></p>
+
+
 
   <form action="/pizzas/edit/<%=pizza._id%>" method="get">
-    <button type="submit">edit</button>
+    <button type="submit">Edite</button>
   </form>
+
+  <br>
+
   <form action="/pizzas/delete/<%=pizza._id%>" method="post">
     <button type="submit">Delete it</button>
   </form>
