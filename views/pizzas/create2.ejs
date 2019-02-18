@@ -1,35 +1,79 @@
 
-  <p>Name:</p>
-    <input type="text" name="name" />
+<% include ../pizzas/header %>
 
 
-    <p>expense:</p>
-    <input type="number" name="expense" />
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    /* Create two unequal columns that floats next to each other */
+    .column {
+        float: left;
+        padding: 10px;
+        height: 300px; /* Should be removed. Only for demonstration */
+    }
+
+    .left {
+        width: 50%;
+    }
+
+    .right {
+        width: 50%;
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+</style>
 
 
-    <p>ingredients:</p>
-    <% for(let i=0; i< ingredients.length; i++){ %>
-<input type="checkbox" name="ingredient" value="<%= ingredients[i]._id %>">
-<%= ingredients[i].name %>
-<% } %>
+<div class="container">
+
+    <!-- JUMBOTRON -->
+
+    <div class="text-center">
+        <div class="jumbotron">
+            <h1>sirPizza</h1>
+            <p class="lead">Share your favorite pizzas!</p>
+        </div>
+    </div>
 
 
-<p>difficulties:</p>
-<input type="text" name="difficulties" />
+    <!-- pizza Form -->
+    <div class="container">
+
+        <div class="row">
+
+            <div class="column left jumbotron" style="background-color:#aaa;">
+                <form action="/pizzas/save" method="post" enctype="multipart/form-data">
+
+                    <p>Pizza Name</p>
+                    <input type="text" class="form-control" placeholder="Pizza name">
 
 
-<p>description:</p>
-<textarea type="text" name="description"></textarea>
+                    <p>description:</p>
+                    <textarea type="text" name="description"></textarea>
+
+                    <p>Average Price:</p>
+                    <input type="number" name="expense" />
 
 
-<p>Image:</p>
-<input type="file" name="picturePizza">
-<input type="submit" value="submit resto" />
+                    <p>Image:</p>
+                    <input type="file" name="picturePizza">
+                    <input type="submit" value="submit resto" />
+
+                </form>
+            </div>
+
+        </div>
 
 
 
 
-  <div class="column"  style="background-color:#bbb;">
-    <p>Image:</p>
-    <input type="file" name="picturePizza">
-  </div>
+    </div>
+
+<% include ../pizzas/footer %>
