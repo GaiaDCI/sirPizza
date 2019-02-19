@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+require('./Ingredient')
 
 const pizzaSchema = new mongoose.Schema({
   name: {
@@ -8,7 +9,7 @@ const pizzaSchema = new mongoose.Schema({
   expense: {
     type: Number
   },
-  ingredients_ids: [],
+  ingredient: [{ type: mongoose.Schema.ObjectId, ref: 'Ingredient' }],
   difficulties: {
     type: String
   },

@@ -28,7 +28,10 @@
         <%= pizzas[i].expense %>
       </p>
       <p class="card-text">Ingredients:
-        <%= pizzas[i].ingredients_ids %>
+        <% let ingredientsArray = pizzas[i].ingredient %>
+        <% ingredientsArray.forEach(ingredient => { %>
+        <%= ingredient.name %>
+        <% }) %>
       </p>
       <p class="card-text">Difficulties:
         <%= pizzas[i].difficulties %>
