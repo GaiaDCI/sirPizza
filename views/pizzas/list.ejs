@@ -14,7 +14,7 @@
         Pizza Not Found
       <%  } else { %>
       <a href="/pizzas/create">
-        Create the best pizza in your life!
+        Create your pizza
       </a>
       <% } %>
     </h3>
@@ -38,11 +38,17 @@
           <%= pizzas[i].name %>
         </a>
       </h5>
+      
       <ul class=" col"></ul>
 
       <p class="card-text">Expense:<%= pizzas[i].expense %></p>
 
-      <p class="card-text">Ingredients:<%= pizzas[i].ingredients_ids %></p>
+      <p class="card-text">Ingredients:      
+      <% let ingredientsArray = pizzas[i].ingredient %>
+        <% ingredientsArray.forEach(ingredient => { %>
+        <%= ingredient.name %>
+        <% }) %>
+      </p>
 
       <p class="card-text">Difficulties:<%= pizzas[i].difficulties %></p>
 
@@ -54,6 +60,7 @@
       </li>
 
       </ul>
+
 
     </div>
 
