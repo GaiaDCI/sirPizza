@@ -45,7 +45,7 @@ pizzaController.home = (req, res) => {
 
 //LIST ALL
 pizzaController.list = (req, res) => {
-  PizzaRecipe.find({}).exec((error, pizzas) => {
+  PizzaRecipe.find({}).populate("ingredient").exec((error, pizzas) => {
     if (error) {
       console.log("Error:", error);
     } else {
@@ -57,8 +57,14 @@ pizzaController.list = (req, res) => {
 //CREATE METHOD
 pizzaController.create = (req, res) => {
   Ingredients.find({}).exec((error, ingredients) => {
+    if (error) {
+      console.log("Error:", error);
 
-    res.render("../views/pizzas/create", { ingredients: ingredients });
+    } else {
+
+      res.render("../views/pizzas/create", { ingredients: ingredients });
+    }
+
   })
 };
 
@@ -76,12 +82,22 @@ pizzaController.save = async (req, res) => {
     description: req.body.description,
     image: cloudUpload.url
   });
+  console.log(req.body.ingredient);
+  let ids = req.body.ingredient;
+  if (Array.isArray(ids)) {
+    ids.forEach(function (id) {
+      mongoose.Types.ObjectId(id);
+      pizza.ingredient.push(id)
+    });
+  } else {
+    pizza.ingredient.push(ids)
+  }
 
 
 
   pizza.save(error => {
     if (error) {
-      console.log(error);
+      console.log('Something went wrong when saving: ', error);
       res.render("pizzas/create");
     } else {
       console.log("oh yeah! You created your pizza.");
