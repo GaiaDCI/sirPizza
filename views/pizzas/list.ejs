@@ -11,7 +11,7 @@
     </div>
     <h3>
       <% if(notFound) {  %>
-        Pizza Not Found
+      Pizza Not Found
       <%  } else { %>
       <a href="/pizzas/create">
         Create your pizza
@@ -28,23 +28,23 @@
 
     <% for(let i=0; i < pizzas.length; i++) {%>
 
-      <% if (i % 3 == 0) {%>
+    <% if (i % 3 == 0) {%>
     <div class="row">
       <%}%>
     <div class="col border bg-warning">
 
       <h5>
         <a href="/pizzas/show/<%= pizzas[i]._id%>" class="font-weight-bold text-danger card-link">
-          <%= pizzas[i].name %>
-        </a>
+      <%= pizzas[i].name %>
+      </a>
       </h5>
-      
+
       <ul class=" col"></ul>
 
       <p class="card-text">Expense:<%= pizzas[i].expense %></p>
 
-      <p class="card-text">Ingredients:      
-      <% let ingredientsArray = pizzas[i].ingredient %>
+      <p class="card-text">Ingredients:
+        <% let ingredientsArray = pizzas[i].ingredient %>
         <% ingredientsArray.forEach(ingredient => { %>
         <%= ingredient.name %>
         <% }) %>
@@ -55,7 +55,7 @@
       <p class="card-text">Description:<%= pizzas[i].description %></p>
 
       <li>
-        <img class="responsive img-thumbnail col-sm-6" src="<%= pizzas[i].image%>" alt=""  style="padding:0; width: 100%;
+        <img class="responsive img-thumbnail col-sm-6" src="<%= pizzas[i].image%>" alt="" style="padding:0; width: 100%;
   max-width: 400px; height: 230px;">
       </li>
 
@@ -65,13 +65,13 @@
     </div>
 
 
-      <% if (i % 3 == 2) {%>
-      </div>
-        <%}%>
+    <% if (i % 3 == 2) {%>
+  </div>
+  <%}%>
 
     <% } %>
 
-  </div>
+</div>
 
 </div>
 
