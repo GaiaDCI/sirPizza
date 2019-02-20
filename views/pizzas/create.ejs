@@ -13,16 +13,16 @@
 
   <!-- FINE JUMBOTRON -->
 
-  <div class="container" >
+  <div class="container">
 
-    <h1>Wellcome to create page</h1>
+    <h1>Welcome to create page</h1>
 
     <form action="/pizzas/save" method="post" enctype="multipart/form-data">
 
       <!-- first Div -->
       <div class="form-row justify-content-center">
         <div class="form-group col-md-1 ">
-          <label >Name</label>
+          <label>Name</label>
         </div>
         <div class="form-group col-md-4 ">
           <input type="text" class="form-control" name="name" placeholder="pizza Name">
@@ -33,7 +33,7 @@
       <!-- second Div -->
       <div class="form-row justify-content-center">
         <div class="form-group col-md-1 ">
-          <label >Description</label>
+          <label>Description</label>
         </div>
         <div class="form-group col-md-4 ">
           <textarea type="text" class="form-control" name="description"></textarea>
@@ -44,12 +44,12 @@
       <!-- third Div -->
       <div class="form-row justify-content-center">
         <div class="form-group col-md-1 ">
-          <label >Ingredients</label>
+          <label>Ingredients</label>
         </div>
         <div class="form-group col-md-4">
           <% for(let i=0; i< ingredients.length; i++){ %>
-            <input class="form-control" type="checkbox" name="ingredient" value="<%= ingredients[i]._id %>">
-            <%= ingredients[i].name %>
+          <input class="form-control" type="checkbox" name="ingredient" value="<%= ingredients[i]._id %>">
+          <%= ingredients[i].name %>
           <% } %>
         </div>
       </div>
@@ -60,7 +60,7 @@
       <!-- fourth Div -->
       <div class="form-row justify-content-center">
         <div class="form-group col-md-1 ">
-          <label >Difficulties</label>
+          <label>Difficulties</label>
         </div>
         <div class="form-group col-md-4 ">
           <input type="text" class="form-control" name="difficulties" />
@@ -73,7 +73,7 @@
       <!-- fifth Div -->
       <div class="form-row justify-content-center">
         <div class="form-group col-md-1 ">
-          <label >Price avarage</label>
+          <label>Price avarage</label>
         </div>
         <div class="form-group col-md-4 ">
           <input type="number" class="form-control" name="Price" />
@@ -85,18 +85,18 @@
       <!-- sixth Div -->
       <div class="form-row justify-content-center form-inline">
         <div class="form-group col-md-1">
-          <label >Image:</label>
+          <label>Image:</label>
         </div>
         <div class="form-group col-md-4 ">
-          <input type="file" name="picturePizza" class="btn btn-info"/>
+          <input type="file" name="picturePizza" class="btn btn-info" />
         </div>
         <div class="form-group col-md ">
-        <input type="submit" value="submit resto" class="btn btn-info" />
+          <input type="submit" value="submit resto" class="btn btn-info" />
         </div>
-      <!-- end div -->
+        <!-- end div -->
 
     </form>
 
   </div>
 
-<% include ../pizzas/footer %>
+  <% include ../pizzas/footer %>

@@ -1,39 +1,27 @@
 <!-- HEADER -->
 <% include ./pizzas/header %>
+<% include ../js/search.js %>
 
-<script>
-    let search = () => {
-        let searchBar = document.getElementById("searchBar");
-        console.log(searchBar.value);
-        document.location.href = `http://localhost:3000/pizzas/search?query=${
-            searchBar.value
-            }`;
-    };
-</script>
 
 <!-- SEARCH BAR HOME PAGE -->
 <div class="form-inline justify-content-center">
 
     <div class="position-absolute">
-        <input type="text" placeholder="Search...." class="form-control" id="searchBar"/>
+        <input type="text" placeholder="Search...." class="form-control" id="searchBar" />
 
         <!-- SEARCH A PIZZA-->
-        <button
-                onclick="search()"
-                type="button"
-                class="btn font-weight-bold text-light bg-danger">
-            Search</button>
+        <button onclick="search()" type="button" class="btn font-weight-bold text-light bg-danger">
+            Search
+        </button>
 
         <!-- GO TO CREATE -->
-        <a
-                class="btn font-weight-bold text-light bg-success"
-                href="/pizzas/create">
+        <a class="btn font-weight-bold text-light bg-success" href="/pizzas/create">
             Create</a>
     </div>
 
     <!-- BACKGROUND -->
     <img src="https://previews.123rf.com/images/romastudio/romastudio1602/romastudio160200131/51686551-pizza-heart-shape-with-ingredients-and-copy-spase-on-vintage-background-happy-valentines-day-love-co.jpg"
-         class="card-img" alt="">
+        class="card-img" alt="">
 
 </div>
 
