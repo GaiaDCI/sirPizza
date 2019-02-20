@@ -19,15 +19,17 @@
       </div>
     </div>
     <div class="form-row justify-content-center">
-      <div class="form-group col-md-4">
+      <!-- <div class="form-group col-md-4"> -->
+        <div class="form-check p-2">
         <% for(let i=0; i< ingredients.length; i++){ %>
         <input
-          class="form-control"
-          type="checkbox"
+        class="form-check-input" 
+          type="radio"
           name="ingredient"
           value="<%= ingredients[i]._id %>"
-        />
-        <%= ingredients[i].name %> <% } %>
+          checked />
+        <%= ingredients[i].name %> <% } %> />
+      </label>
       </div>
     </div>
     <div class="form-row justify-content-center">
