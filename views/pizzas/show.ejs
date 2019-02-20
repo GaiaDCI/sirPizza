@@ -14,7 +14,7 @@
 
   <div class="form-row justify-content-center">
     <div class="form-group col-md-2 ">
-      <h4 class="text-secondary">Pizza Name </h4>
+      <h4 class="text-secondary">Pizza Nameee </h4>
     </div>
     <div class="form-group col-md-4 ">
       <h4 class="text-secondary"><%= pizza.name %></h4>
@@ -37,12 +37,13 @@
       <h4 class="text-secondary">Ingredients </h4>
     </div>
     <div class="form-group col-md-4 ">
-      <% for(let i=0; i< ingredients.length; i++){ %>
-        <input type="checkbox" name="ingredient" value="<%= ingredients[i]._id %>">
-        <%= ingredients[i].name %>
-      <% } %>
+      <% ingredients.forEach(ingredient => { %>
+      <h3>
+        <%= ingredient.name %>
+      </h3>
+      <% }) %>
     </div>
-    
+
   </div>
 
 
@@ -71,28 +72,16 @@
 
   <div class="form-row justify-content-center">
     <form action="/pizzas/edit/<%=pizza._id%>" method="get">
-      <button class="btn btn-info type="submit" >Edite</button>
+      <button class="btn btn-info type=" submit">Edite</button>
     </form>
 
     <form action="/pizzas/delete/<%=pizza._id%>" method="post">
       <button type="submit" class="btn btn-info">Delete it</button>
     </form>
 
-  </div>  <br>
+  </div> <br>
 
 
 </div>
 
 <% include ../pizzas/footer %>
-
-
-
-
-
-
-
-
-
-
-
-
