@@ -21,5 +21,6 @@ router.get("/edit/:id", pizza.edit);
 router.post("/update/:id", pizza.update);
 
 router.post("/delete/:id", pizza.delete);
+router.get("/loggin", pizza.log);
 
 module.exports = router;

@@ -30,18 +30,18 @@ pizzaController.search = (req, res) => {
     if (error) {
       console.log("Error:", error);
     } else {
-      if (pizzas.length < 1){
+      if (pizzas.length < 1) {
         PizzaRecipe.find({}).exec((error, pizzas) => {
-          if(error) {
+          if (error) {
             console.log("Error:", error);
-          }else {
+          } else {
 
-            res.render("../views/pizzas/list", { pizzas: pizzas , notFound:true, message: 'Pizza Not  Found'});
+            res.render("../views/pizzas/list", { pizzas: pizzas, notFound: true, message: 'Pizza Not  Found' });
 
           }
         });
       } else {
-        res.render("../views/pizzas/list", { pizzas: pizzas , notFound:false, message: 'result : '});
+        res.render("../views/pizzas/list", { pizzas: pizzas, notFound: false, message: 'result : ' });
       }
 
 
@@ -72,7 +72,7 @@ pizzaController.list = (req, res) => {
     if (error) {
       console.log("Error:", error);
     } else {
-      res.render("../views/pizzas/list", { pizzas: pizzas, notFound:false });
+      res.render("../views/pizzas/list", { pizzas: pizzas, notFound: false });
     }
   });
 };
@@ -136,7 +136,7 @@ pizzaController.show = (req, res) => {
       console.log("Error:", error);
     } else {
 
-      Ingredients.find({ "_id": { "$in": pizza["ingredients_ids"] } }).
+      Ingredients.find({ "_id": { "$in": pizza["ingredient"] } }).
         exec((error, ingredients) => {
           if (error) {
             res.render("../views/pizzas/show", {
@@ -161,7 +161,22 @@ pizzaController.edit = (req, res) => {
     if (error) {
       console.log("YOU HAVE AN ERROR:", error);
     } else {
-      res.render("../views/pizzas/edit", { pizza: pizza });
+
+      Ingredients.find({ "_id": { "$in": pizza["ingredient"] } }).
+        exec((error, ingredients) => {
+          if (error) {
+            res.render("../views/pizzas/edit", {
+              pizza: pizza,
+              ingredients: {}
+            })
+          } else {
+            res.render("../views/pizzas/edit", {
+              pizza: pizza,
+              ingredients: ingredients,
+            })
+          }
+        });
+
     }
   });
 };
@@ -190,6 +205,11 @@ pizzaController.update = (req, res) => {
   );
 };
 
+//Pizza Log in
+pizzaController.log = (req, res) => {
+  res.render('../views/pizzas/loggin')
+}
+
 //DELETE
 pizzaController.delete = (req, res) => {
   PizzaRecipe.remove({ _id: req.params.id }, error => {
@@ -201,5 +221,6 @@ pizzaController.delete = (req, res) => {
     }
   });
 };
+
 
 module.exports = pizzaController;

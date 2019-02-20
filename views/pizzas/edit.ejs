@@ -4,15 +4,16 @@
 
   <h1>Edit your pizza</h1>
 
-  <form
-          action="/pizzas/update/<%= pizza._id %>"
-          method="post">
+  <form action="/pizzas/update/<%= pizza._id %>" method="post">
     <p>Name:</p>
     <input type="text" value="<%= pizza.name %>" name="name" />
     <p>expense:</p>
     <input type="text" value="<%= pizza.expense %>" name="expense" />
     <p>Main ingredients:</p>
-    <input type="text" value="<%= pizza.ingredients %>" name="ingredients" />
+    <% for(let i=0; i< ingredients.length; i++){ %>
+    <input class="form-control" type="checkbox" name="ingredient" value="<%= ingredients[i]._id %>">
+    <%= ingredients[i].name %>
+    <% } %>
     <p>difficulties:</p>
     <input type="text" value="<%= pizza.difficulties %>" name="difficulties" />
     <p>description:</p>
