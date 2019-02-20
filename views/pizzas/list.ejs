@@ -1,48 +1,57 @@
 <% include ../pizzas/header %>
+<% include ../../js/search.js %>
 
-<div class="container">
-
+<div class="container ">
   <!-- JUMBOTRON -->
-
-  <div class="text-center">
-    <div class="jumbotron">
-      <h1>sirPizza</h1>
-      <p class="lead">Share your favorite pizzas!</p>
+  <div class="text-center mt-5">
+    <!--SEARCH BAR-->
+    <div class="jumbotron justify-content-center bg-light border-0">
+      <div>
+          
+      </div>
+      <div class="form-inline justify-content-center">
+          <input type="text" placeholder="Margherita..." class="form-control" id="searchBar" />
+          <!-- SEARCH A PIZZA-->
+          <button onclick="search()" type="button" class="btn font-weight-bold text-light bg-danger m-2">
+              Search
+          </button>
+          <!-- GO TO CREATE -->
+          <a class="btn font-weight-bold text-light bg-success" href="/pizzas/create">
+              Create</a>
+        </div>
+        <h3>
+            <% if(notFound) {  %>
+            <%  } else { %>
+            
+              <h1>Ops, Pizza Not Found</h1>
+              <!-- Find the recipe you want or create your pizza recipe -->
+              <a href="/pizzas/create" class="text-dark"></a>
+            </a> 
+            <% } %>
+          </h3>
     </div>
-    <h3>
-      <% if(notFound) {  %>
-      Pizza Not Found
-      <%  } else { %>
-      <a href="/pizzas/create">
-        Create your pizza
-      </a>
-      <% } %>
-    </h3>
   </div>
-
   <!-- FINE JUMBOTRON -->
-
 
   <!-- CARD -->
   <div class="container">
-
     <% for(let i=0; i < pizzas.length; i++) {%>
-
     <% if (i % 3 == 0) {%>
     <div class="row">
       <%}%>
-    <div class="col border bg-warning">
-
+    <div class="col border">
       <h5>
-        <a href="/pizzas/show/<%= pizzas[i]._id%>" class="font-weight-bold text-danger card-link">
+        <a href="/pizzas/show/<%= pizzas[i]._id%>" class="font-weight-bold text-dark card-link">
       <%= pizzas[i].name %>
       </a>
       </h5>
 
       <ul class=" col"></ul>
 
-      <p class="card-text">Expense:<%= pizzas[i].expense %></p>
-
+      <div class="card-text row bg-danger">
+        <p class="col bg-light">Expense:</p>
+        <p  class="col"><%= pizzas[i].expense %></p>
+      </div>
       <p class="card-text">Ingredients:
         <% let ingredientsArray = pizzas[i].ingredient %>
         <% ingredientsArray.forEach(ingredient => { %>
@@ -53,11 +62,9 @@
       <p class="card-text">Difficulties:<%= pizzas[i].difficulties %></p>
 
       <p class="card-text">Description:<%= pizzas[i].description %></p>
-
-      <li>
         <img class="responsive img-thumbnail col-sm-6" src="<%= pizzas[i].image%>" alt="" style="padding:0; width: 100%;
   max-width: 400px; height: 230px;">
-      </li>
+
 
       </ul>
 
