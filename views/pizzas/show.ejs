@@ -1,26 +1,98 @@
 <% include ../pizzas/header %>
+<div class="container mt-5">
+  <!-- JUMBOTRON -->
 
-
-    <div class="container">
-     
-      <h1><%= pizza.name %></h1>
-
-      <p><%= pizza.expense %></p>
-      <p>ingredients:</p>
-  <% for(let i=0; i< ingredients.length; i++){ %>
-  <input type="checkbox" name="ingredient" value="<%= ingredients[i]._id %>">
-  <%= ingredients[i].name %>
-  <% } %>
-      <p><%= pizza.difficulties%></p>
-      <p><%= pizza.description%></p>
-
-      <form action="/pizzas/edit/<%=pizza._id%>" method="get">
-        <button type="submit">edit</button>
-      </form>
-      <form action="/pizzas/delete/<%=pizza._id%>" method="post">
-        <button type="submit">Delete it</button>
-      </form>
-
+  <div class="text-center">
+    <div class="jumbotron">
+      <h1>sirPizza</h1>
+      <p class="lead">Share your favorite pizzas!</p>
     </div>
-  </body>
-</html>
+  </div>
+
+  <!-- FINE JUMBOTRON -->
+
+
+  <div class="form-row justify-content-center">
+    <div class="form-group col-md-2 ">
+      <h4 class="text-secondary">Pizza Name </h4>
+    </div>
+    <div class="form-group col-md-4 ">
+      <h4 class="text-secondary"><%= pizza.name %></h4>
+    </div>
+  </div>
+
+
+  <div class="form-row justify-content-center">
+    <div class="form-group col-md-2 ">
+      <h4 class="text-secondary">Description </h4>
+    </div>
+    <div class="form-group col-md-4 ">
+      <h4 class="text-secondary"><%= pizza.description%></h4>
+    </div>
+  </div>
+
+
+  <div class="form-row justify-content-center">
+    <div class="form-group col-md-2 ">
+      <h4 class="text-secondary">Ingredients </h4>
+    </div>
+    <div class="form-group col-md-4 ">
+      <% for(let i=0; i< ingredients.length; i++){ %>
+        <input type="checkbox" name="ingredient" value="<%= ingredients[i]._id %>">
+        <%= ingredients[i].name %>
+      <% } %>
+    </div>
+    
+  </div>
+
+
+
+  <div class="form-row justify-content-center">
+    <div class="form-group col-md-2 ">
+      <h4 class="text-secondary">Difficulties</h4>
+    </div>
+    <div class="form-group col-md-4 ">
+      <h4 class="text-secondary"><%= pizza.difficulties%></h4>
+    </div>
+  </div>
+
+
+
+  <div class="form-row justify-content-center">
+    <div class="form-group col-md-2 ">
+      <h4 class="text-secondary">Price</h4>
+    </div>
+    <div class="form-group col-md-4 ">
+      <h4 class="text-secondary"><%= pizza.expense%></h4>
+    </div>
+  </div>
+
+
+
+  <div class="form-row justify-content-center">
+    <form action="/pizzas/edit/<%=pizza._id%>" method="get">
+      <button class="btn btn-info type="submit" >Edite</button>
+    </form>
+
+    <form action="/pizzas/delete/<%=pizza._id%>" method="post">
+      <button type="submit" class="btn btn-info">Delete it</button>
+    </form>
+
+  </div>  <br>
+
+
+</div>
+
+<% include ../pizzas/footer %>
+
+
+
+
+
+
+
+
+
+
+
+
