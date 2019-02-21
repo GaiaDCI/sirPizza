@@ -9,7 +9,9 @@ const pizzaSchema = new mongoose.Schema({
   expense: {
     type: Number
   },
+
   ingredient: [{ type: mongoose.Schema.ObjectId, ref: 'Ingredient' }],
+
   difficulties: {
     type: String
   },

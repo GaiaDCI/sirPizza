@@ -1,8 +1,12 @@
 <% include ../pizzas/header %>
+
 <div class="container bg-info">
+
   <h1>Edit your pizza</h1>
 
-  <form action="/pizzas/update/<%= pizza._id %>" method="post">
+  <form
+          action="/pizzas/update/<%= pizza._id %>"
+          method="post">
     <p>Name:</p>
     <input type="text" value="<%= pizza.name %>" name="name" />
     <p>expense:</p>

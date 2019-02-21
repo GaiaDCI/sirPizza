@@ -1,50 +1,85 @@
 <% include ../pizzas/header %>
-<div class="container">
-  <!-- JUMBOTRON -->
-  <div class="text-center">
-    <div class="jumbotron">
-      <h1>sirPizza</h1>
-      <p class="lead">Share your favorite pizzas!</p>
+<% include ../../js/search.js %>
+
+<div class="container-fluid">
+  <div class="text-center mt-5">
+    <div class="jumbotron jumbotron-fluid justify-content-center bg-light">
+      <div class="form-inline justify-content-center">
+          <input type="text" placeholder="Margherita..." class="form-control" id="searchBar" />
+          <button onclick="search()" type="button" class="btn font-weight-bold text-light bg-danger m-2">
+              Search
+          </button>
+          <a class="btn font-weight-bold text-light bg-success" href="/pizzas/create">
+              Create</a>
+      </div>
+        <h3>
+            <% if(notFound) {  %>
+              <h1>Ops, Pizza Not Found</h1>
+            <%  } else { %>
+              <!-- Find the recipe you want or create your pizza recipe -->
+              <!-- <a href="/pizzas/create" class="text-dark">
+                Create your pizza
+            </a>  -->
+            <% } %>
+        </h3>
     </div>
-    <h3>
-      <a href="/pizzas/create">
-        Create your pizza
-      </a>
-    </h3>
   </div>
-  <!-- FINE JUMBOTRON -->
 
-  <!-- CARD -->
-  <div class="container row">
-    <% for(let i=0; i < pizzas.length; i++) {%>
-    <div class="col border bg-warning">
+  <div class="card-deck m-2">
+      <% for(let i=0; i < pizzas.length; i++) {%>
+        <% if (i % 4 == 0) {%>
+      <div class="row">
+      <%}%>
+      <div class="card m-1">
+            <img 
+            class="card-img-top responsive img-thumbnail bg-warning" 
+            src="<%= pizzas[i].image%>" 
+            alt="" 
+            style="padding:0; width: 100%; height: 100%;"
+            >
+            <div class="card-body">
+              <h4 class="card-title text-center">
+                <a href="/pizzas/show/<%= pizzas[i]._id%>" class="font-weight-bold text-dark card-link">
+                <%= pizzas[i].name %>
+                </a>
+              </h4>
 
-      <h5>
-        <a href="/pizzas/show/<%= pizzas[i]._id%>" class="font-weight-bold text-danger card-link">
-          <%= pizzas[i].name %>
-        </a>
-      </h5>
-      <p class="card-text">Expense:
-        <%= pizzas[i].expense %>
-      </p>
-      <p class="card-text">Ingredients:
-        <% let ingredientsArray = pizzas[i].ingredient %>
-        <% ingredientsArray.forEach(ingredient => { %>
-        <%= ingredient.name %>
-        <% }) %>
-      </p>
-      <p class="card-text">Difficulties:
-        <%= pizzas[i].difficulties %>
-      </p>
-      <p class="card-text">Description:
-        <%= pizzas[i].description %>
-      </p>
+              <div class="row">
+                <div class="col-sm-5">
+                  <div class="card-text font-weight-bold">
+                    <p class="card-text">Ingredients:</p>
+                    <p class="card-text">Difficulties:</p>
+                    <p class="card-text">Expense:</p>
+                    <p class="card-text">Description:</p>
+                </div>
+              </div>
 
-      <img class="card-img-top" src="<%= pizzas[i].image%>" alt="">
+                <div class="col-sm-7">
+                <div class="card-text">
+                  <p class="card-text">
+                    <% let ingredientsArray = pizzas[i].ingredient %>
+                    <% ingredientsArray.forEach(ingredient => { %>
+                    <%= ingredient.name %>
+                    <% }) %>
+                  </p>
+                  <p class="card-text">
+                    <%= pizzas[i].difficulties %>
+                  </p>
+                  <p class="card-text"><%= pizzas[i].expense %></p>
+                  <p class="card-text"><%= pizzas[i].description %></p>
+                </div>
+            </div>
+            <!-- chiuso card body  -->
 
-
-    </div>
-    <% } %>
-  </div>
-</div>
-<% include ../pizzas/footer %>
+              <!-- <a href="/pizzas/show/<%= pizzas[i]._id%>"  
+                class="btn btn-primary m-2">
+                <%= pizzas[i].name %> -->
+              </a>
+          </div>   
+          </div>
+        </div>
+        <% if (i % 4 == 3) {%>
+      </div>
+      <%}%>
+      <% } %> 
+ </div> 
