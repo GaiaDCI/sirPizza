@@ -1,6 +1,6 @@
 <% include ../pizzas/header %>
 
-<div class="container p-3">
+<div class="container">
   <form
     action="/pizzas/save"
     method="post"
@@ -18,20 +18,35 @@
         />
       </div>
     </div>
+
+    <!-- CHECKBOX CONTAINER -->
     <div class="form-row justify-content-center">
-      <!-- <div class="form-group col-md-4"> -->
-        <div class="form-check p-2">
-        <% for(let i=0; i< ingredients.length; i++){ %>
-        <input
-        class="form-check-input" 
-          type="radio"
-          name="ingredient"
-          value="<%= ingredients[i]._id %>"
-          checked />
-        <%= ingredients[i].name %> <% } %> />
-      </label>
+      <div class="form-group col-md-4">
+        <legend class="col-form-label col-sm-2 pt-0">
+          Ingredients
+        </legend>
+        <!-- CHECKBOX INSIDE -->
+        <div class="col-sm-10 bg-success">
+          <div class="form-check bg-warning">
+            <% for(let i=0; i< ingredients.length; i++){ %>
+            <input
+              class="form-check-input"
+              type="radio"
+              name="ingredient"
+              id="gridRadios1"
+              value="<%= ingredients[i]._id %>"
+              checked
+            />
+            <label class="form-check-label" for="gridRadios1">
+              tomato
+              <!-- <%= ingredients[i].name %> <% } %> -->
+            </label>
+          </div>
+        </div>
       </div>
     </div>
+    <!-- FINE CHECKBOX CONTAINER -->
+
     <div class="form-row justify-content-center">
       <div class="form-group col-md-4">
         <textarea
@@ -66,11 +81,10 @@
       <div class="form-group col-md-4">
         <input type="file" name="picturePizza" />
       </div>
-      </div>
-      <div class="form-row justify-content-center">
-          <div class="form-group col-md-4">
+    </div>
+    <div class="form-row justify-content-center">
+      <div class="form-group col-md-4">
         <input type="submit" value="submit resto" class="btn btn-info" />
-      </div>
       </div>
     </div>
   </form>
