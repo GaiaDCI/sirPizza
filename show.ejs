@@ -1,26 +1,66 @@
+
 <% include ../pizzas/header %>
 
-    <div class="container">
-     
-      <h1><%= pizza.name %></h1>
-
-      <p><%= pizza.expense %></p>
-      <p><%= pizza.ingredients%></p>
-      <p><%= pizza.difficulties%></p>
-      <p><%= pizza.description%></p>
-
-      <form action="/pizzas/edit/<%=pizza._id%>" method="get">
-        <button type="submit">edit</button>
-      </form>
-
-      <form action="/pizzas" method="post">
-        <a href="/pizzas">Go back to the list</a>
-      </form>
-
-      <form action="/pizzas/delete/<%=pizza._id%>" method="post">
-        <button type="submit">Delete it</button>
-      </form>
+<div class="container mt-5 border">
+  <div class="p-3 mt-5 border">
+    <div class="form-row justify-content-center bg-warning">
+            <div class="card m-2">
+              <img
+                class="card-img-top responsive" 
+                src=""
+                alt=""
+                style="padding:0; width: 100%; height: 100%; max-width: 400px; max-height: 200px"
+              />
+          </div>
     </div>
-  </body>
+   <div class="form-row justify-content-center">
+    <h5 class="form-group font-weight-bold" style="font-family: 'Raleway', sans-serif;">
+     <%= pizza.name %>
+    </h5>
+  </div>
+<!-- 2 riga -->
+  <div class="card-text-center border"
+       style="max-width:200px;">
+    <%= pizza.description%>
+  </div>
+<!-- 3 riga -->
+  <div class="form-row justify-content-center">
+    ingredients:
+      <% for(let i=0; i< ingredients.length; i++){ %>
+        <input type="checkbox" name="ingredient" value="<%= ingredients[i]._id %>" />
+        <%= ingredients[i].name %>
+      <% } %>
+  </div>
+<!-- 4 riga -->
+  <div class="form-row justify-content-center">
+     Difficulties: <%= pizza.difficulties%>
+    </div>
+  </div>
+  <!-- 5 riga -->
+  <div class="form-row justify-content-center">
+<%= pizza.expense%>
+  </div>
+    <div class="form-inline border justify-content-center">
+        <input type="submit" value="confirm" class="btn btn-success"/>
+    <form action="/pizzas/edit/<%=pizza._id%>" method="get">
+      <button class="btn font-weight-bold text-light bg-warning" type="submit">Edit</button>
+    </form>
+    <form action="/pizzas/delete/<%=pizza._id%>" method="post">
+      <button type="submit" class="btn btn-danger">
+          <i class="far fa-trash-alt"></i></button>
+    </form>
+  </div>
 
-</html>
+   </div>
+  </form>
+</div>
+
+
+
+
+
+
+
+
+
+
