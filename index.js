@@ -1,5 +1,5 @@
 const path = require("path");
-const bodyParser = require("body-parser");
+const bodyParser = require("body-parser"); //allow me to catch and what I enter on the Dom
 
 const express = require("express");
 const app = express();

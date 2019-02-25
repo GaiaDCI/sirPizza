@@ -10,6 +10,9 @@ const pizzaController = {};
 const ingredientSchema = require('../models/Ingredient');
 const Ingredients = mongoose.model('Ingredient', ingredientSchema);
 
+// Pizza Controller
+const UserSchema = require('../models/UserSchema')
+const User = mongoose.model('User', UserSchema);
 
 require("dotenv").config();
 const cloudinary = require("cloudinary");
@@ -207,6 +210,21 @@ pizzaController.update = (req, res) => {
 
 //Pizza Log in
 pizzaController.log = (req, res) => {
+  let email = req.body.email;
+  let password = req.body.password;
+
+  console.log(email);
+  console.log(password);
+  User.find({ email: email, password: password }).exec((error, user) => {
+    if (error) {
+      console.log("error: ", error);
+
+    } else {
+      res.render("../views/pizzas/list", { user: user })
+    }
+  })
+
+
   res.render('../views/pizzas/loggin')
 }
 
