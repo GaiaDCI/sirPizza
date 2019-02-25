@@ -1,102 +1,92 @@
 <% include ../pizzas/header %>
 
-<div class="container  mt-5">
-
-  <!-- JUMBOTRON -->
-
-  <div class="text-center">
-    <div class="jumbotron">
-      <h1>sirPizza</h1>
-      <p class="lead">Share your favorite pizzas!</p>
+<div class="container">
+  <form
+    action="/pizzas/save"
+    method="post"
+    enctype="multipart/form-data"
+    class="p-5 m-4"
+  >
+    <div class="text-center p-3">
+    <div class="form-row justify-content-center">
+      <div class="form-group col-md-4">
+        <input
+          type="text"
+          class="form-control"
+          name="name"
+          placeholder="Name of the pizza"
+        />
+      </div>
     </div>
-  </div>
 
-  <!-- FINE JUMBOTRON -->
+    <!-- CHECKBOX CONTAINER -->
+    <div class="form-row justify-content-center">
+      <div class="form-group col-md-4">
+        <legend class="col-form-label col-sm-2 pt-0">
+          Ingredients
+        </legend>
+        <!-- CHECKBOX INSIDE -->
+        <div class="col-sm-10">
+          <div class="form-check">
+            <% for(let i=0; i< ingredients.length; i++){ %>
+            <input
+              class="form-check-input"
+              type="radio"
+              name="ingredient"
+              id="gridRadios1"
+              value="<%= ingredients[i]._id %>"
+              checked
+            />
+            <label class="form-check-label" for="gridRadios1">
+              tomato
+              <!-- <%= ingredients[i].name %> <% } %> -->
+            </label>
+          </div>
 
-  <div class="container">
-
-    <h1>Welcome to the create page</h1>
-
-    <form action="/pizzas/save" method="post" enctype="multipart/form-data">
-
-      <!-- first Div -->
-      <div class="form-row justify-content-center">
-        <div class="form-group col-md-1 ">
-          <label>Name</label>
-        </div>
-        <div class="form-group col-md-4 ">
-          <input type="text" class="form-control" name="name" placeholder="pizza Name">
-        </div>
-      </div>
-      <!-- end div -->
-
-      <!-- second Div -->
-      <div class="form-row justify-content-center">
-        <div class="form-group col-md-1 ">
-          <label>Description</label>
-        </div>
-        <div class="form-group col-md-4 ">
-          <textarea type="text" class="form-control" name="description"></textarea>
         </div>
       </div>
-      <!-- end div -->
+    </div>
+    <!-- FINE CHECKBOX CONTAINER -->
 
-      <!-- third Div -->
-      <div class="form-row justify-content-center">
-        <div class="form-group col-md-1 ">
-          <label>Ingredients</label>
-        </div>
-        <div class="form-group col-md-4">
-          <% for(let i=0; i< ingredients.length; i++){ %>
-          <input class="form-control" type="checkbox" name="ingredient" value="<%= ingredients[i]._id %>">
-          <%= ingredients[i].name %>
-          <% } %>
-        </div>
+    <div class="form-row justify-content-center">
+      <div class="form-group col-md-4">
+        <textarea
+          type="text"
+          class="form-control"
+          name="description"
+          placeholder="Description"
+        ></textarea>
       </div>
-      <!-- end div -->
-
-
-
-      <!-- fourth Div -->
-      <div class="form-row justify-content-center">
-        <div class="form-group col-md-1 ">
-          <label>Difficulties</label>
-        </div>
-        <div class="form-group col-md-4 ">
-          <input type="text" class="form-control" name="difficulties" />
-        </div>
+    </div>
+    <div class="form-row justify-content-center">
+      <div class="form-group col-md-4">
+        <input
+          type="text"
+          class="form-control"
+          name="difficulties"
+          placeholder="Difficulties: easy or hard?"
+        />
       </div>
-      <!-- end div -->
-
-
-
-      <!-- fifth Div -->
-      <div class="form-row justify-content-center">
-        <div class="form-group col-md-1 ">
-          <label>Price avarage</label>
-        </div>
-        <div class="form-group col-md-4 ">
-          <input type="number" class="form-control" name="Price" />
-        </div>
+    </div>
+    <div class="form-row justify-content-center">
+      <div class="form-group col-md-4">
+        <input
+          type="number"
+          class="form-control"
+          name="Price"
+          placeholder="Average price"
+        />
       </div>
-      <!-- end div -->
-
-
-      <!-- sixth Div -->
-      <div class="form-row justify-content-center form-inline">
-        <div class="form-group col-md-1">
-          <label>Image:</label>
-        </div>
-        <div class="form-group col-md-4 ">
-          <input type="file" name="picturePizza" class="btn btn-info" />
-        </div>
-        <div class="form-group col-md ">
-          <input type="submit" value="submit resto" class="btn btn-info" />
-        </div>
-        <!-- end div -->
-
-    </form>
-
-  </div>
-
-  <% include ../pizzas/footer %>
+    </div>
+    <div class="form-row justify-content-center">
+      <div class="form-group col-md-4">
+        <input type="file" name="picturePizza" class="btn btn-warning"/>
+      </div>
+    </div>
+    <div class="form-row justify-content-center">
+      <div class="form-group col-md-4">
+        <input type="submit" value="save" class="btn btn-success" />
+      </div>
+    </div>
+  </form>
+</div>
