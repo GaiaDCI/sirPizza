@@ -35,11 +35,18 @@
       difficulties:
       <input type="text" value="<%= pizza.difficulties %>" name="difficulties" />
       
-
     <p>expense:</p>
     <input type="text" value="<%= pizza.expense %>" name="expense" />
     
     <input type="submit" value="confirm" />
+
+    <p>Main ingredients:</p>
+    <% for(let i=0; i< ingredients.length; i++){ %>
+    <input class="form-control" type="checkbox" name="ingredient" value="<%= ingredients[i]._id %>">
+    <%= ingredients[i].name %>
+    <% } %>
+   
+
 
 
   <div class="form-inline border justify-content-center">

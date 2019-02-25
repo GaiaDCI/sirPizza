@@ -1,5 +1,5 @@
 const path = require("path");
-const bodyParser = require("body-parser");
+const bodyParser = require("body-parser"); //allow me to catch and what I enter on the Dom
 
 const express = require("express");
 const app = express();
@@ -7,8 +7,10 @@ const app = express();
 const mongoose = require("mongoose");
 const pizzas = require("./routes/pizzas");
 
+let url = process.env.MONGODB_URI;
+
 mongoose
-  .connect(`mongodb://localhost:27017/sirPizza`, { useNewUrlParser: true })
+  .connect(`${url}`, { useNewUrlParser: true })
   .then(() => {
     console.log("server is working.");
   })
@@ -28,6 +30,6 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log("Listening at port 3000");
 });

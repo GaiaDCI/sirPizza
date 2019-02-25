@@ -6,8 +6,14 @@ const PizzaRecipe = mongoose.model("Pizza", pizzaSchema);
 const pizzaController = {};
 
 // Ingredients Model
-const ingredientSchema = require("../models/Ingredient");
-const Ingredients = mongoose.model("Ingredient", ingredientSchema);
+
+const ingredientSchema = require('../models/Ingredient');
+const Ingredients = mongoose.model('Ingredient', ingredientSchema);
+
+// Pizza Controller
+const UserSchema = require('../models/UserSchema')
+const User = mongoose.model('User', UserSchema);
+
 
 require("dotenv").config();
 const cloudinary = require("cloudinary");
@@ -30,6 +36,7 @@ pizzaController.search = (req, res) => {
           if (error) {
             console.log("Error:", error);
           } else {
+
             res.render("../views/pizzas/list", {
               pizzas: pizzas,
               notFound: true,
@@ -61,6 +68,7 @@ pizzaController.home = (req, res) => {
 
 //LIST ALL
 pizzaController.list = (req, res) => {
+
   PizzaRecipe.find({})
     .populate("ingredient")
     .exec((error, pizzas) => {
@@ -125,8 +133,10 @@ pizzaController.show = (req, res) => {
     if (error) {
       console.log("Error:", error);
     } else {
-      Ingredients.find({ _id: { $in: pizza["ingredients_ids"] } }).exec(
-        (error, ingredients) => {
+
+
+      Ingredients.find({ "_id": { "$in": pizza["ingredient"] } }).
+        exec((error, ingredients) => {
           if (error) {
             res.render("../views/pizzas/show", {
               pizza: pizza,
@@ -150,7 +160,22 @@ pizzaController.edit = (req, res) => {
     if (error) {
       console.log("YOU HAVE AN ERROR:", error);
     } else {
-      res.render("../views/pizzas/edit", { pizza: pizza });
+
+      Ingredients.find({ "_id": { "$in": pizza["ingredient"] } }).
+        exec((error, ingredients) => {
+          if (error) {
+            res.render("../views/pizzas/edit", {
+              pizza: pizza,
+              ingredients: {}
+            })
+          } else {
+            res.render("../views/pizzas/edit", {
+              pizza: pizza,
+              ingredients: ingredients,
+            })
+          }
+        });
+
     }
   });
 };
@@ -179,6 +204,26 @@ pizzaController.update = (req, res) => {
   );
 };
 
+//Pizza Log in
+pizzaController.log = (req, res) => {
+  let email = req.body.email;
+  let password = req.body.password;
+
+  console.log(email);
+  console.log(password);
+  User.find({ email: email, password: password }).exec((error, user) => {
+    if (error) {
+      console.log("error: ", error);
+
+    } else {
+      res.render("../views/pizzas/list", { user: user })
+    }
+  })
+
+
+  res.render('../views/pizzas/loggin')
+}
+
 //DELETE
 pizzaController.delete = (req, res) => {
   PizzaRecipe.remove({ _id: req.params.id }, error => {
@@ -190,5 +235,6 @@ pizzaController.delete = (req, res) => {
     }
   });
 };
+
 
 module.exports = pizzaController;
