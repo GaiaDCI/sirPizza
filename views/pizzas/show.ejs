@@ -1,69 +1,60 @@
-
 <% include ../pizzas/header %>
 
 <div class="container mt-5 border">
   <div class="p-3 mt-5 border">
     <div class="form-row justify-content-center bg-warning">
-            <div class="card m-2">
-              <img
-                class="card-img-top responsive" 
-                src=""
-                alt=""
-                style="padding:0; width: 100%; height: 100%; max-width: 400px; max-height: 200px"
-              />
-          </div>
+      <div class="card m-2">
+        <img class="card-img-top responsive" src="" alt="" style="padding:0; width: 100%; height: 100%; max-width: 400px; max-height: 200px" />
+      </div>
     </div>
-   <div class="form-row justify-content-center">
-    <h5 class="form-group font-weight-bold" style="font-family: 'Raleway', sans-serif;">
-     <%= pizza.name %>
-    </h5>
-  </div>
-
-<!-- 2 riga -->
-  <div class="card-text-center border"
-       style="max-width:200px;">
-    <%= pizza.description%>
-  </div>
-  
-<!-- 3 riga -->
-  <div class="form-row justify-content-center">
-  </div>
-
-  <div class="form-row justify-content-center">
-    <div class="form-group col-md-2 ">
-      <h4 class="text-secondary">Ingredients </h4>
-    </div>
-    <div class="form-group col-md-4 ">
-      <% ingredients.forEach(ingredient => { %>
-      <h3>
-        <%= ingredient.name %>
-      </h3>
-      <% }) %>
+    <div class="form-row justify-content-center">
+      <h5 class="form-group font-weight-bold" style="font-family: 'Raleway', sans-serif;">
+        <%= pizza.name %>
+      </h5>
     </div>
 
-  </div>
-<!-- 4 riga -->
-  <div class="form-row justify-content-center">
-     Difficulties: <%= pizza.difficulties%>
+    <!-- 2 riga -->
+    <div class="card-text-center border" style="max-width:200px;">
+      <%= pizza.description%>
+    </div>
+
+    <!-- 3 riga -->
+    <div class="form-row justify-content-center">
+    </div>
+
+    <div class="form-row justify-content-center">
+      <div class="form-group col-md-2 ">
+        <h4 class="text-secondary">Ingredients </h4>
+      </div>
+      <div class="form-group col-md-4 ">
+        <% ingredients.forEach(ingredient => { %>
+        <h3>
+          <%= ingredient.name %>
+        </h3>
+        <% }) %>
+      </div>
+
+    </div>
+    <!-- 4 riga -->
+    <div class="form-row justify-content-center">
+      Difficulties:
+      <%= pizza.difficulties%>
     </div>
   </div>
   <!-- 5 riga -->
   <div class="form-row justify-content-center">
-<%= pizza.expense%>
+    <%= pizza.expense%>
   </div>
-    <div class="form-inline border justify-content-center">
-        <input type="submit" value="confirm" class="btn btn-success"/>
+  <div class="form-inline border justify-content-center">
     <form action="/pizzas/edit/<%=pizza._id%>" method="get">
       <button class="btn font-weight-bold text-light bg-warning" type="submit">Edit</button>
-
     </form>
     <form action="/pizzas/delete/<%=pizza._id%>" method="post">
       <button type="submit" class="btn btn-danger">
-          <i class="far fa-trash-alt"></i></button>
+        <i class="far fa-trash-alt"></i></button>
     </form>
   </div>
 
-   </div>
-  </form>
 </div>
-
+</form>
+</div>
