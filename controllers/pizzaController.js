@@ -105,10 +105,10 @@ pizzaController.save = async (req, res) => {
     description: req.body.description,
     image: cloudUpload.url
   });
-  console.log(req.body.ingredient);
+  console.log(req.body.ingredients);
   let ids = req.body.ingredient;
   if (Array.isArray(ids)) {
-    ids.forEach(function(id) {
+    ids.forEach(function (id) {
       mongoose.Types.ObjectId(id);
       pizza.ingredient.push(id);
     });
@@ -133,8 +133,6 @@ pizzaController.show = (req, res) => {
     if (error) {
       console.log("Error:", error);
     } else {
-
-
       Ingredients.find({ "_id": { "$in": pizza["ingredient"] } }).
         exec((error, ingredients) => {
           if (error) {
@@ -149,7 +147,7 @@ pizzaController.show = (req, res) => {
             });
           }
         }
-      );
+        );
     }
   });
 };
@@ -187,9 +185,10 @@ pizzaController.update = (req, res) => {
     {
       $set: {
         name: req.body.name,
-        description: req.body.description,
-        rating: req.body.rating,
-        open: req.body.open
+        expense: req.body.expense,
+        ingredients: req.body.ingredients,
+        difficulties: req.body.difficulties,
+        description: req.body.description
       }
     },
     { new: true },

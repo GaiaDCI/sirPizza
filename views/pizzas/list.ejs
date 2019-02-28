@@ -1,4 +1,6 @@
-<% include ../pizzas/header %> <% include ../../js/search.js %>
+<% include ../pizzas/header %>
+<% include ../../js/search.js %>
+
 
 <div class="container-fluid">
   <div class="text-center mt-5">
@@ -25,65 +27,74 @@
   </div>
 
   <div class="card-deck m-2">
-    <% for(let i=0; i < pizzas.length; i++) {%> <% if (i % 4 == 0) {%>
+    <% for(let i=0; i < pizzas.length; i++) {%>
+    <% if (i % 4 == 0) {%>
     <div class="row">
       <%}%>
-      <div class="card m-2">
-        <a href="/pizzas/show/<%= pizzas[i]._id%>">
-      <img class="card-img-top responsive" src="<%= pizzas[i].image%>" alt=""
-        style="padding:0; width: 100%; height: 100%; max-width: 400px; max-height: 200px" />
-      </a>
+      <a href="/pizzas/show/<%= pizzas[i]._id%>">
+        <div class="card m-2">
+          <img class="card-img-top responsive" src="<%= pizzas[i].image%>" alt="" style="padding:0; width: 100%; height: 100%; max-width: 400px; max-height: 200px" />
+          <!-- TEXT IN THE CARD -->
+          <div class="card-body" style="font-size: 13px">
+            <h5 class="card-title text-center" style="font-family: 'Raleway', sans-serif;">
+              <a href="/pizzas/show/<%= pizzas[i]._id%>" class="text-dark">
+                <%= pizzas[i].name %>
+              </a>
+            </h5>
+            <div class="row pl-2 pr-2">
+              <!-- FIRST -->
+              <div class="col-sm-5 font-weight-bold">
+                <i class="fas fa-pizza-slice p-1"></i>
+                Ingredients
+              </div>
+              <div class="col-sm-7">
+                <p>
+                  <% let ingredientsArray = pizzas[i].ingredient %>
+                  <%
+                  ingredientsArray.forEach(ingredient => { %>
+                  <%=
+                  ingredient.name %>
+                  <% }) %>
+                </p>
+              </div>
+              <!-- SECOND -->
+              <div class="col-sm-5 font-weight-bold">
+                <i class="fas fa-utensil-spoon p-1"></i>
+                Difficulties
+              </div>
+              <div class="col-sm-7">
+                <p>
+                  <%= pizzas[i].difficulties %>
+                </p>
+              </div>
+              <!-- THIRD -->
+              <div class="col-sm-5 font-weight-bold">
+                <i class="fas fa-bomb p-1"></i>
+                Price
+              </div>
+              <div class="col-sm-7">
+                <p>
+                  <%= pizzas[i].expense %>
+                </p>
+              </div>
+              <!-- FOURTH -->
+              <!-- <div class="col-sm-5 font-weight-bold">
 
-      <!-- TEXT IN THE CARD -->
-      <div class="card-body" style="font-size: 13px">
-        <h5 class="card-title text-center" style="font-family: 'Raleway', sans-serif;">
-          <a href="/pizzas/show/<%= pizzas[i]._id%>" class="text-dark">
-            <%= pizzas[i].name %>
-          </a>
-        </h5>
-        <div class="row pl-4 pr-4">
-          <!-- FIRST -->
-          <div class="col-sm-5 font-weight-bold">
-            <i class="fas fa-pizza-slice p-1"></i>
-            Ingredients
-          </div>
-          <div class="col-sm-7">
-            <p>
-              <% let ingredientsArray = pizzas[i].ingredient %> <%
-                  ingredientsArray.forEach(ingredient => { %> <%=
-                  ingredient.name %> <% }) %>
-            </p>
-          </div>
-          <!-- SECOND -->
-          <div class="col-sm-5 font-weight-bold">
-            <i class="fas fa-utensil-spoon p-1"></i>
-            Difficulties
-          </div>
-          <div class="col-sm-7">
-            <p><%= pizzas[i].difficulties %></p>
-          </div>
-          <!-- THIRD -->
-          <div class="col-sm-5 font-weight-bold">
-            <i class="fas fa-bomb p-1"></i>
-            Price
-          </div>
-          <div class="col-sm-7">
-            <p><%= pizzas[i].expense %></p>
-          </div>
-          <!-- FOURTH -->
-          <!-- <div class="col-sm-5 font-weight-bold">
               <i class="fas fa-book p-1 bg-danger"></i>
               Description
             </div>
             <div class="col-sm-7">
               <p><%= pizzas[i].description %></p>
             </div> -->
-        </div>
-        <!-- end card body  -->
-      </div>
+            </div>
+            <!-- end card body  -->
+          </div>
+      </a>
     </div>
     <% if (i % 4 == 3) {%>
   </div>
-  <%}%> <% } %>
+  <%}%>
+  <% } %>
+
 </div>
 </div>
