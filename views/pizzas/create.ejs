@@ -9,20 +9,22 @@
         </div>
       </div>
       <!-- CHECKBOX CONTAINER -->
-      <div class="form-row justify-content-center bg-info">
+      <div class="form-row justify-content-center">
         <div class="form-group col-md-4">
           <legend class="col-form-label col-sm-2 pt-0">
             Ingredients
           </legend>
           <!-- CHECKBOX INSIDE -->
           <div class="col-sm-10">
-            <div class="form-check">
+            <div class="form-check text-left">
               <% for(let i=0; i< ingredients.length; i++){ %>
-              <input class="form-check-input" type="radio" name="ingredient" id="gridRadios1" value="<%= ingredients[i]._id %>"
+              <input class="form-check-input" type="radio" name="ingredients" id="gridRadios1" value="<%= ingredients[i] %>"
                 checked />
               <label class="form-check-label" for="gridRadios1">
-                name ingredient
-                <!-- <%= ingredients[i].name %> <% } %> -->
+                <p>
+                  <%= ingredients[i].name %>
+                </p>
+                <% } %>
               </label>
             </div>
 

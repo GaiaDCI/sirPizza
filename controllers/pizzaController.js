@@ -105,7 +105,7 @@ pizzaController.save = async (req, res) => {
     description: req.body.description,
     image: cloudUpload.url
   });
-  console.log(req.body.ingredient);
+  console.log(req.body.ingredients);
   let ids = req.body.ingredient;
   if (Array.isArray(ids)) {
     ids.forEach(function (id) {
@@ -133,8 +133,6 @@ pizzaController.show = (req, res) => {
     if (error) {
       console.log("Error:", error);
     } else {
-
-
       Ingredients.find({ "_id": { "$in": pizza["ingredient"] } }).
         exec((error, ingredients) => {
           if (error) {
