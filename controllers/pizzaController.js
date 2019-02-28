@@ -108,7 +108,7 @@ pizzaController.save = async (req, res) => {
   console.log(req.body.ingredient);
   let ids = req.body.ingredient;
   if (Array.isArray(ids)) {
-    ids.forEach(function(id) {
+    ids.forEach(function (id) {
       mongoose.Types.ObjectId(id);
       pizza.ingredient.push(id);
     });
@@ -149,7 +149,7 @@ pizzaController.show = (req, res) => {
             });
           }
         }
-      );
+        );
     }
   });
 };
@@ -187,9 +187,10 @@ pizzaController.update = (req, res) => {
     {
       $set: {
         name: req.body.name,
-        description: req.body.description,
-        rating: req.body.rating,
-        open: req.body.open
+        expense: req.body.expense,
+        ingredients: req.body.ingredients,
+        difficulties: req.body.difficulties,
+        description: req.body.description
       }
     },
     { new: true },

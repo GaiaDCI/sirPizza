@@ -1,92 +1,63 @@
 <% include ../pizzas/header %>
 
-<div class="container">
-  <form
-    action="/pizzas/save"
-    method="post"
-    enctype="multipart/form-data"
-    class="p-5 m-4"
-  >
+<div class="container mt-5 p-5">
+  <form action="/pizzas/save" method="post" enctype="multipart/form-data" class="bg-warning rounded">
     <div class="text-center p-3">
-    <div class="form-row justify-content-center">
-      <div class="form-group col-md-4">
-        <input
-          type="text"
-          class="form-control"
-          name="name"
-          placeholder="Name of the pizza"
-        />
-      </div>
-    </div>
-
-    <!-- CHECKBOX CONTAINER -->
-    <div class="form-row justify-content-center">
-      <div class="form-group col-md-4">
-        <legend class="col-form-label col-sm-2 pt-0">
-          Ingredients
-        </legend>
-        <!-- CHECKBOX INSIDE -->
-        <div class="col-sm-10">
-          <div class="form-check">
-            <% for(let i=0; i< ingredients.length; i++){ %>
-            <input
-              class="form-check-input"
-              type="radio"
-              name="ingredient"
-              id="gridRadios1"
-              value="<%= ingredients[i]._id %>"
-              checked
-            />
-            <label class="form-check-label" for="gridRadios1">
-              tomato
-              <!-- <%= ingredients[i].name %> <% } %> -->
-            </label>
-          </div>
-
+      <div class="form-row justify-content-center">
+        <div class="form-group col-md-4">
+          <input type="text" class="form-control" name="name" placeholder="Name of the pizza" />
         </div>
       </div>
-    </div>
-    <!-- FINE CHECKBOX CONTAINER -->
+      <!-- CHECKBOX CONTAINER -->
+      <div class="form-row justify-content-center bg-info">
+        <div class="form-group col-md-4">
+          <legend class="col-form-label col-sm-2 pt-0">
+            Ingredients
+          </legend>
+          <!-- CHECKBOX INSIDE -->
+          <div class="col-sm-10">
+            <div class="form-check">
+              <% for(let i=0; i< ingredients.length; i++){ %>
+              <input class="form-check-input" type="radio" name="ingredient" id="gridRadios1" value="<%= ingredients[i]._id %>"
+                checked />
+              <label class="form-check-label" for="gridRadios1">
+                name ingredient
+                <!-- <%= ingredients[i].name %> <% } %> -->
+              </label>
+            </div>
 
-    <div class="form-row justify-content-center">
-      <div class="form-group col-md-4">
-        <textarea
-          type="text"
-          class="form-control"
-          name="description"
-          placeholder="Description"
-        ></textarea>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="form-row justify-content-center">
-      <div class="form-group col-md-4">
-        <input
-          type="text"
-          class="form-control"
-          name="difficulties"
-          placeholder="Difficulties: easy or hard?"
-        />
+      <!-- FINE CHECKBOX CONTAINER -->
+      <div class="form-row justify-content-center">
+        <div class="form-group col-md-4">
+          <textarea type="text" class="form-control" name="description" placeholder="Description"></textarea>
+        </div>
       </div>
-    </div>
-    <div class="form-row justify-content-center">
-      <div class="form-group col-md-4">
-        <input
-          type="number"
-          class="form-control"
-          name="expense"
-          placeholder="Average price"
-        />
+
+      <div class="form-row justify-content-center">
+        <div class="form-group col-md-4">
+          <input type="text" class="form-control" name="difficulties" placeholder="Difficulties?" />
+        </div>
       </div>
-    </div>
-    <div class="form-row justify-content-center">
-      <div class="form-group col-md-4">
-        <input type="file" name="picturePizza" class="btn btn-warning"/>
+
+      <div class="form-row justify-content-center">
+        <div class="form-group col-md-4">
+          <input type="number" name="expense" class="form-control" placeholder="Average price" />
+        </div>
       </div>
-    </div>
-    <div class="form-row justify-content-center">
-      <div class="form-group col-md-4">
-        <input type="submit" value="save" class="btn btn-success" />
+
+      <div class="form-row justify-content-center">
+        <div class="form-group col-md-4">
+          <input type="file" name="picturePizza" class="btn btn-danger rounded form-control" />
+        </div>
       </div>
-    </div>
+
+      <div class="form-row justify-content-center">
+        <div class="form-group col-md-4">
+          <input type="submit" value="SAVE" class="btn btn-success rounded form-control" />
+        </div>
+      </div>
   </form>
 </div>
