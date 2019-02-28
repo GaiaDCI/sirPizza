@@ -107,6 +107,8 @@ pizzaController.save = async (req, res) => {
   });
   console.log(req.body.ingredients);
   let ids = req.body.ingredient;
+  console.log('---', ids);
+
   if (Array.isArray(ids)) {
     ids.forEach(function (id) {
       mongoose.Types.ObjectId(id);

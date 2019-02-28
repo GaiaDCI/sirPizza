@@ -18,11 +18,11 @@
           <div class="col-sm-10">
             <div class="form-check text-left">
               <% for(let i=0; i< ingredients.length; i++){ %>
-              <input class="form-check-input" type="radio" name="ingredients" id="gridRadios1" value="<%= ingredients[i] %>"
-                checked />
+              <input class="form-check-input" type="checkbox" name="ingredients" id="gridRadios1"
+                value="<%= ingredients[i].name %>" />
               <label class="form-check-label" for="gridRadios1">
                 <p>
-                  <%= ingredients[i].name %>
+                  <%= ingredients[i].name%>
                 </p>
                 <% } %>
               </label>
