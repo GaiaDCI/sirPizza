@@ -1,69 +1,73 @@
-
 <% include ../pizzas/header %>
 
-<div class="container mt-5 border">
-  <div class="p-3 mt-5 border">
-    <div class="form-row justify-content-center bg-warning">
-            <div class="card m-2">
-              <img
-                class="card-img-top responsive" 
-                src=""
-                alt=""
-                style="padding:0; width: 100%; height: 100%; max-width: 400px; max-height: 200px"
-              />
-          </div>
+<div class="container mt-5 p-5">
+  <div class="bg-warning p-4">
+    <div class="form-row justify-content-center">
+      <div class="form-group col-md-4">
+        <img class="card-img-top responsive rounded" src="<%= pizza.image %>" alt="" style="max-width: 600px; max-height: auto" />
+      </div>
     </div>
-   <div class="form-row justify-content-center">
-    <h5 class="form-group font-weight-bold" style="font-family: 'Raleway', sans-serif;">
-     <%= pizza.name %>
-    </h5>
-  </div>
 
-<!-- 2 riga -->
-  <div class="card-text-center border"
-       style="max-width:200px;">
-    <%= pizza.description%>
-  </div>
-  
-<!-- 3 riga -->
-  <div class="form-row justify-content-center">
-  </div>
-
-  <div class="form-row justify-content-center">
-    <div class="form-group col-md-2 ">
-      <h4 class="text-secondary">Ingredients </h4>
+    <div class="form-row justify-content-center">
+      <div class="form-group col-md-4 text-center">
+        <h3>
+          <%= pizza.name %>
+        </h3>
+      </div>
     </div>
-    <div class="form-group col-md-4 ">
-      <% ingredients.forEach(ingredient => { %>
-      <h3>
+
+    <div class="form-group justify-content-center text-center">
+      <div class=" font-weight-bold">
+        <i class="fas fa-pizza-slice p-1"></i>
+        Ingredients
+      </div>
+      <div class="form-group justify-content-center text-center">
+        <% ingredients.forEach(ingredient => { %>
         <%= ingredient.name %>
-      </h3>
-      <% }) %>
+        <% }) %>
+      </div>
     </div>
 
-  </div>
-<!-- 4 riga -->
-  <div class="form-row justify-content-center">
-     Difficulties: <%= pizza.difficulties%>
+    <div class="form-group justify-content-center text-center">
+      <div class=" font-weight-bold">
+        <i class="fas fa-burn"></i>
+        Description
+      </div>
+      <div class="form-group justify-content-center text-center">
+        <%= pizza.description%>
+      </div>
     </div>
-  </div>
-  <!-- 5 riga -->
-  <div class="form-row justify-content-center">
-<%= pizza.expense%>
-  </div>
-    <div class="form-inline border justify-content-center">
-        <input type="submit" value="confirm" class="btn btn-success"/>
-    <form action="/pizzas/edit/<%=pizza._id%>" method="get">
-      <button class="btn font-weight-bold text-light bg-warning" type="submit">Edit</button>
 
-    </form>
-    <form action="/pizzas/delete/<%=pizza._id%>" method="post">
-      <button type="submit" class="btn btn-danger">
+    <div class="form-group justify-content-center text-center">
+      <div class=" font-weight-bold">
+        <i class="fas fa-utensil-spoon p-1"></i>
+        Difficulties
+      </div>
+      <div class="form-group justify-content-center text-center">
+        <%= pizza.difficulties%>
+      </div>
+    </div>
+
+    <div class="form-group justify-content-center text-center">
+      <div class=" font-weight-bold">
+        <i class="fas fa-bomb p-1"></i>
+        Average price
+      </div>
+      <div class="form-group justify-content-center text-center">
+        <%= pizza.expense%>
+      </div>
+    </div>
+
+    <div class="form-inline justify-content-center">
+      <form action="/pizzas/edit/<%=pizza._id%>" method="get">
+        <button class="btn bg-success m-2 text-light font-weight-bold rounded" type="submit">EDIT</button>
+      </form>
+      <form action="/pizzas/delete/<%=pizza._id%>" method="post">
+        <button type="submit" class="btn btn-danger rounded">
           <i class="far fa-trash-alt"></i></button>
-    </form>
+      </form>
+    </div>
+
   </div>
 
-   </div>
-  </form>
 </div>
-
